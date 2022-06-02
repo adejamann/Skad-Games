@@ -6,4 +6,4 @@ Game 1: Blackjack
 
 Game 2: Wordle
 
-Game 3: 
+Game 3: Tic-Tac-Toe
