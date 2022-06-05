@@ -18,7 +18,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.layout.GridPane;
 
 /**
- *@author Adeja Mann
+ *@author Team 17
  *@version 1.0 
  */
 public class GameSuite extends Application {
