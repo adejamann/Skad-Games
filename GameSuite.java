@@ -39,8 +39,6 @@ public class GameSuite extends Application {
         Text label = new Text("SKAD GAMES");
         label.setFont(Font.font("Comic Sans MS", FontWeight.EXTRA_BOLD, 65));
         label.setFill(Color.WHITE);
-        label.setStrokeWidth(5);
-        label.setStroke(Color.BLACK);
         HBox title = new HBox(label);
         title.setAlignment(Pos.TOP_CENTER);
         
