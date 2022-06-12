@@ -1,8 +1,9 @@
 import javafx.scene.paint.Color;
 import javafx.application.Application;
+import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+import javafx.stage.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Label;
@@ -16,9 +17,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.FontWeight;
 import javafx.scene.layout.GridPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.Tab;
 
 /**
- *@author Adeja Mann
+ *@author Team 17
  *@version 1.0 
  */
 public class GameSuite extends Application {
@@ -37,10 +41,18 @@ public class GameSuite extends Application {
     //Title
         primaryStage.setTitle("Game Suite");
         Text label = new Text("SKAD GAMES");
-        label.setFont(Font.font("Comic Sans MS", FontWeight.EXTRA_BOLD, 65));
+        label.setFont(Font.font("Comic Sans MS", 65));
         label.setFill(Color.WHITE);
         HBox title = new HBox(label);
         title.setAlignment(Pos.TOP_CENTER);
+        Text teaminfo = new Text("We are Team 17 \nOur Team includes: \nOghenekome Onoyona: oonoyona3@gatech.edu\nAdeja Mann; amann34@gatech.edu\nChukwudumebi Ejikeme: cejikeme3@gatech.edu\nSachin Rajeev: srajeev8@gatech.edu");
+        teaminfo.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+        teaminfo.setFill(Color.BLACK);
+        HBox info = new HBox(teaminfo);
+        info.setAlignment(Pos.BOTTOM_CENTER);
+        
+        //Tabs
+        
         
         // Game block Grid
         Rectangle sq1 = new Rectangle(100, 100, 100, 100);
@@ -61,24 +73,34 @@ public class GameSuite extends Application {
         Text sq3label = new Text("Tic-Tac-Toe");
         sq3label.setFont(Font.font("Comic Sans MS", FontWeight.EXTRA_BOLD, 15));
         sq3stack.getChildren().addAll(sq3, sq3label);
+        Button game1 = new Button();
+        game1.setText("Play");
+        Button game2 = new Button();
+        game2.setText("Play");
+        Button game3 = new Button();
+        game3.setText("Play");
         GridPane grid = new GridPane();
         grid.add(sq1stack, 0, 0, 1, 1);
         grid.add(sq2stack, 1, 0, 1, 1);
         grid.add(sq3stack, 2, 0, 1, 1);
+        grid.add(game1, 0, 1, 1, 1);
+        grid.add(game2, 1, 1, 1, 1);
+        grid.add(game3, 2, 1, 1, 1);
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(15);
+        grid.setVgap(15);
         
         
 
         // Background
         Image img = new Image("images.JPG");
         ImageView bg = new ImageView(img);
-        bg.setFitHeight(500);
-        bg.setFitWidth(500);
+        bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
+        bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
         
         //Setting Stage
         StackPane backg = new StackPane();
-        backg.getChildren().addAll(bg, title, grid);
+        backg.getChildren().addAll(bg, title, grid, info);
         primaryStage.setScene(new Scene(backg, 500, 500));
         primaryStage.show();
 
