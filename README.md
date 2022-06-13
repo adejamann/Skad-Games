@@ -1,9 +1,9 @@
 # Skad-Games
 
-Choice of platform:
+Choice of platform: JavaFX
 
-Game 1: Blackjack
+Game 1: Tic Tac Toe
 
-Game 2: Wordle
+Game 2: BlackJack
 
-Game 3: Tic-Tac-Toe
+Game 3: Wordle
