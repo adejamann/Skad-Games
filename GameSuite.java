@@ -19,7 +19,7 @@ import javafx.scene.layout.GridPane;
 
 /**
  *@author Adeja Mann
- *@version 1.0 
+ *@version 2.0 
  */
 public class GameSuite extends Application {
     /**
@@ -71,7 +71,7 @@ public class GameSuite extends Application {
         
 
         // Background
-        Image img = new Image("images.JPG");
+        Image img = new Image("idk'.png");
         ImageView bg = new ImageView(img);
         bg.setFitHeight(500);
         bg.setFitWidth(500);
