@@ -35,7 +35,7 @@ private VBox root;
 private HBox options;
 private Button exit;
 private Button restart;
-private GridPane gameBoard;
+private Board gameBoard;
 
 public TicTacToe() {
 initialize();
@@ -60,23 +60,35 @@ restart.setText("Restart");
 options.getChildren().addAll(exit, restart);
 root.getChildren().addAll(options, gameBoard);
 EventHandler<ActionEvent> handler = (ActionEvent ae) -> {
-             exit.setText("Temp");
+             exit.setText("T");
              //gameStage.close();
  };
  exit.setOnAction(handler);
 }
 
 public void play () {
+      int turn = 0;
+   while (gameBoard.hasWon() == -1 && gameBoard.moves < 9) {
+      if(turn % 2 == 0) {
+         gameBoard.playerOne();
+      } else {
+         gameBoard.playerTwo();
+      }
+      turn++;
+   }
 }
 
 /*
 * close the application and return the number of wins in this game session to add to total
 */
-public int exit() {
+public int quit() {
 return wins;
 }
 
 public Stage getStage() {
    return gameStage;
+}
+
+public void restart() {
 }
 }

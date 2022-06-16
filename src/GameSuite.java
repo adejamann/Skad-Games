@@ -45,7 +45,6 @@ TicTacToe one = new TicTacToe();
      * @param primaryStage Stage
      */
     public void start(Stage primaryStage) {
-    System.out.println("yo");
     //Title
         primaryStage.setTitle("Game Suite");
         Text label = new Text("SKAD GAMES");
@@ -88,7 +87,8 @@ TicTacToe one = new TicTacToe();
         one = new TicTacToe();
        //primaryStage.hide();
         one.getStage().show();
-      };
+         };
+        
         game1.setOnAction(handler);
         Button game2 = new Button();
         game2.setText("Play");
@@ -118,8 +118,14 @@ TicTacToe one = new TicTacToe();
         backg.getChildren().addAll(bg, title,info, grid);
         primaryStage.setScene(new Scene(backg, 500, 500));
         primaryStage.show();
-        
-    
-
+ /**       
+    Thread th = new Thread(new Runnable() {
+         public void run() {
+         one.play();
+         }
+});
+th.setDaemon(true);
+th.start();
+*/
     }
 }
