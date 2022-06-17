@@ -54,11 +54,12 @@ gameStage.sizeToScene();
 
 restart = new Button();
 exit = new Button(); 
-
 exit.setText("Exit");
 restart.setText("Restart");
 options.getChildren().addAll(exit, restart);
 root.getChildren().addAll(options, gameBoard);
+
+
 EventHandler<ActionEvent> handler = (ActionEvent ae) -> {
              exit.setText("T");
              //gameStage.close();
@@ -66,7 +67,11 @@ EventHandler<ActionEvent> handler = (ActionEvent ae) -> {
  exit.setOnAction(handler);
 }
 
+/**
+* starts the game. the code below should be deleted when proper implementation is added.
+*/
 public void play () {
+/**
       int turn = 0;
    while (gameBoard.hasWon() == -1 && gameBoard.moves < 9) {
       if(turn % 2 == 0) {
@@ -76,6 +81,7 @@ public void play () {
       }
       turn++;
    }
+   */
 }
 
 /*
@@ -85,6 +91,9 @@ public int quit() {
 return wins;
 }
 
+/**
+* returns the stage to display the actual game in gamesuite
+*/
 public Stage getStage() {
    return gameStage;
 }

@@ -35,6 +35,9 @@ Image playerO = new Image("O.jpg");
 ImageView oView = new ImageView(playerO);
 public int moves = 0;
 
+/*
+* initializes the gridpane
+*/
 public Board () {
 super();
 this.setHgap(10);
@@ -43,27 +46,30 @@ this.setPadding(new Insets(0, 10, 0, 10));
 initialize();
 }
 
+/*
+* adds 9 buttons to the grid pane to be added
+*/
 private void initialize() {
 for (int i = 0; i < 9; i++) {
 Button temp = new Button();
 Image img = new Image("Tile.jpg");
-ImageView view = new ImageView(img);
-      temp.setGraphic(view);
-      view.setFitWidth(150);
+ImageView view = new ImageView(img); 
+      temp.setGraphic(view); //sets the image to the button
+      view.setFitWidth(150); //sets the image properties
       view.setFitHeight(150);
       view.setPreserveRatio(true);
       
-      oView.setFitWidth(150);
+      oView.setFitWidth(150); //sets a player 2 image properties
       oView.setFitHeight(150);
       oView.setPreserveRatio(true);
       temp.setUserData("empty");
-tiles[i] = temp;
+tiles[i] = temp; //adds all the buttons to an array
 }
 
 int count = 0;
 for (int i = 0; i < 3; i++) {
    for (int j = 0; j < 3; j++) {
-   this.add(tiles[count], i, j);
+   this.add(tiles[count], i, j); //adds the buttons to the gridpane
    count++;
    }
 }
@@ -78,10 +84,11 @@ public void clear() {
 }
 
 /**
-* check each button image to see if it spans 3 in a row. 
-* return 1 if player1 won or 2 if player 2 one. return -1 if no one one
+* check each button image in the gridpane to see if it is the same icon
+*that spans 3 in a row. 
+* return 1 if player1 won or 2 if player2/ the bot won . return -1 if no one one yet
 */
-public int hasWon() {
+public int hasWon() { 
    if (tiles[0].getUserData().equals("X") && tiles[1].getUserData().equals("X") && tiles[2].getUserData().equals("X")) {
       return 1;
    } else if (tiles[3].getUserData().equals("X") && tiles[4].getUserData().equals("X") && tiles[5].getUserData().equals("X")) {
@@ -122,7 +129,6 @@ public int hasWon() {
 /**
 * Call this when its player 1 turn so when they click any tile it changes to X.
 */
-
 public void playerOne() {
         
 for (int i = 0; i < 9; i++) {
@@ -141,9 +147,10 @@ for (int i = 0; i < 9; i++) {
 }
 
 /**
-* Call this when its playerTwo turn so when the button is clicked it changes to O's
+* Call this when its playerTwo turn so when the button is clicked it changes to O's.
+* If it is single player, this method does not have to be called and the button's image can be changed
+* manually.
 */
-
 public void playerTwo() {
         
 for (int i = 0; i < 9; i++) {

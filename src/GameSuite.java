@@ -118,14 +118,6 @@ TicTacToe one = new TicTacToe();
         backg.getChildren().addAll(bg, title,info, grid);
         primaryStage.setScene(new Scene(backg, 500, 500));
         primaryStage.show();
- /**       
-    Thread th = new Thread(new Runnable() {
-         public void run() {
-         one.play();
-         }
-});
-th.setDaemon(true);
-th.start();
-*/
+
     }
 }
