@@ -73,7 +73,7 @@ for (int i = 0; i < 3; i++) {
    count++;
    }
 }
-playerOne(); //When implementing rules delete this. Only to test it works
+//playerOne(); //When implementing rules delete this. Only to test it works
 }
 
 /**
@@ -134,7 +134,7 @@ public void playerOne() {
 for (int i = 0; i < 9; i++) {
    final Button temp = tiles[i];
    temp.setOnAction(ae -> {
-   temp.setUserData("O");
+   temp.setUserData("X");
    playerX = new Image("X.jpg");
    xView = new ImageView(playerX);
    xView.setFitWidth(150);
@@ -157,13 +157,13 @@ for (int i = 0; i < 9; i++) {
    final Button temp = tiles[i];
    temp.setOnAction(ae -> {
    temp.setUserData("O");
-      playerO = new Image("O.jpg");
-      oView = new ImageView(playerO);
-      oView.setFitWidth(150);
-      oView.setFitHeight(150);
-      oView.setPreserveRatio(true);
-      temp.setGraphic(oView);
-      moves++;
+   playerO = new Image("O.jpg");
+   oView = new ImageView(playerO);
+   oView.setFitWidth(150);
+   oView.setFitHeight(150);
+   oView.setPreserveRatio(true);
+   temp.setGraphic(oView);
+   moves++;
    });
 }
 }

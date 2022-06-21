@@ -1,5 +1,5 @@
-import javafx.scene.paint.Color;
 import javafx.application.Application;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -71,8 +71,12 @@ EventHandler<ActionEvent> handler = (ActionEvent ae) -> {
 * starts the game. the code below should be deleted when proper implementation is added.
 */
 public void play () {
+//<<<<<<< Updated upstream
 /**
       int turn = 0;
+=======
+   int turn = 0;
+>>>>>>> Stashed changes
    while (gameBoard.hasWon() == -1 && gameBoard.moves < 9) {
       if(turn % 2 == 0) {
          gameBoard.playerOne();
