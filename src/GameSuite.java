@@ -20,12 +20,19 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Tab;
+import javafx.event.Event;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 /**
  *@author Team 17
  *@version 1.0 
  */
 public class GameSuite extends Application {
+
+int totalWins = 0;
+
+TicTacToe one = new TicTacToe();
     /**
      * Creates a main method.
      * @param args String
@@ -74,7 +81,15 @@ public class GameSuite extends Application {
         sq3label.setFont(Font.font("Comic Sans MS", FontWeight.EXTRA_BOLD, 15));
         sq3stack.getChildren().addAll(sq3, sq3label);
         Button game1 = new Button();
-        game1.setText("Play");
+        game1.setText("Tic-Tac-Toe");
+        
+        EventHandler<ActionEvent> handler = (ActionEvent ae) -> {
+        one = new TicTacToe();
+       //primaryStage.hide();
+        one.getStage().show();
+         };
+        
+        game1.setOnAction(handler);
         Button game2 = new Button();
         game2.setText("Play");
         Button game3 = new Button();
@@ -93,14 +108,14 @@ public class GameSuite extends Application {
         
 
         // Background
-        Image img = new Image("images.JPG");
+        Image img = new Image("background.jpeg");
         ImageView bg = new ImageView(img);
         bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
         bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
         
         //Setting Stage
         StackPane backg = new StackPane();
-        backg.getChildren().addAll(bg, title, grid, info);
+        backg.getChildren().addAll(bg, title,info, grid);
         primaryStage.setScene(new Scene(backg, 500, 500));
         primaryStage.show();
 
