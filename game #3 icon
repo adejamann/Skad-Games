@@ -1,0 +1,3 @@
+Rectangle sq3 = new Rectangle(125, 125, 125, 125);
+        Image display3 = new Image("worldle.jpg");
+        sq3.setFill(new ImagePattern(display3));
