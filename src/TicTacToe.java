@@ -58,9 +58,9 @@ restart = new Button();
 exit = new Button(); 
 exit.setText("Exit");
 restart.setText("Restart");
-restart.setOnACtion(ae-> {
-   restart();
-});
+// restart.setOnACtion(ae-> {
+//    restart();
+// });
 options.getChildren().addAll(exit, restart);
 root.getChildren().addAll(options, gameBoard);
 
@@ -106,6 +106,6 @@ public Stage getStage() {
 }
 
 public void restart() {
-   gameBoard.initialize();
+   //gameBoard.initialize();
 }
 }
