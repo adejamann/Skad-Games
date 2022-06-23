@@ -1,5 +1,5 @@
-import javafx.scene.paint.Color;
 import javafx.application.Application;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -36,7 +36,6 @@ private HBox options;
 private Button exit;
 private Button restart;
 private Board gameBoard;
-private ComputerPlayer bot; 
 
 public TicTacToe() {
 initialize();
@@ -48,7 +47,6 @@ gameStage = new Stage();
 gameScene = new Scene(root);
 options = new HBox();
 gameBoard = new Board();
-bot = new ComputerPlayer(); 
 
 gameStage.setScene(gameScene);
 gameStage.setTitle("Tic-Tac-Toe");
@@ -58,9 +56,6 @@ restart = new Button();
 exit = new Button(); 
 exit.setText("Exit");
 restart.setText("Restart");
-// restart.setOnACtion(ae-> {
-//    restart();
-// });
 options.getChildren().addAll(exit, restart);
 root.getChildren().addAll(options, gameBoard);
 
@@ -75,20 +70,22 @@ EventHandler<ActionEvent> handler = (ActionEvent ae) -> {
 /**
 * starts the game. the code below should be deleted when proper implementation is added.
 */
-public void play() {
+public void play () {
+//<<<<<<< Updated upstream
+/**
+      int turn = 0;
+=======
    int turn = 0;
-   int win = -1;
-   while (win == -1 && gameBoard.moves < 9) {
+>>>>>>> Stashed changes
+   while (gameBoard.hasWon() == -1 && gameBoard.moves < 9) {
       if(turn % 2 == 0) {
          gameBoard.playerOne();
-         win = gameBoard.hasWon();
       } else {
-         bot.makeMove(); 
-         win = gameBoard.hasWon();
+         gameBoard.playerTwo();
       }
       turn++;
    }
-   
+   */
 }
 
 /*
@@ -106,6 +103,5 @@ public Stage getStage() {
 }
 
 public void restart() {
-   //gameBoard.initialize();
 }
 }
