@@ -29,8 +29,8 @@ import javafx.geometry.Insets;
 public class Board extends GridPane {
 
 Button [] tiles = new Button[9];
-Image playerX;
-ImageView xView;
+Image playerX = new Image("X.jpg");
+ImageView xView = new ImageView(playerX);
 Image playerO = new Image("O.jpg");
 ImageView oView = new ImageView(playerO);
 public int moves = 0;
@@ -73,7 +73,7 @@ for (int i = 0; i < 3; i++) {
    count++;
    }
 }
-playerOne(); //When implementing rules delete this. Only to test it works
+//playerOne(); //When implementing rules delete this. Only to test it works
 }
 
 /**
@@ -81,6 +81,12 @@ playerOne(); //When implementing rules delete this. Only to test it works
 *
 */
 public void clear() {
+   for (int i = 0; i < 9; i++) {
+      Image img = new Image("Tile.jpg");
+      ImageView view = new ImageView(img); 
+      tiles[i].setGraphic(view);   
+      tiles[i].setUserData("empty");
+      //may not work, but will check once clear button is created
 }
 
 /**
@@ -131,20 +137,32 @@ public int hasWon() {
 */
 public void playerOne() {
         
-for (int i = 0; i < 9; i++) {
-   final Button temp = tiles[i];
+// for (int i = 0; i < 9; i++) {
+//    final Button temp = tiles[i];
+//    temp.setOnAction(ae -> {
+//    temp.setUserData("X");
+//    playerX = new Image("X.jpg");
+//    xView = new ImageView(playerX);
+//    xView.setFitWidth(150);
+//    xView.setFitHeight(150);
+//    xView.setPreserveRatio(true);
+//    temp.setGraphic(xView);
+//    moves += 1;
+//    });
+// }
+final Button temp = tiles[i];
    temp.setOnAction(ae -> {
-   temp.setUserData("O");
+   temp.setUserData("X");
    playerX = new Image("X.jpg");
    xView = new ImageView(playerX);
    xView.setFitWidth(150);
    xView.setFitHeight(150);
    xView.setPreserveRatio(true);
    temp.setGraphic(xView);
-   moves++;
+   moves += 1;
    });
-}
-}
+
+ }
 
 /**
 * Call this when its playerTwo turn so when the button is clicked it changes to O's.
@@ -153,18 +171,18 @@ for (int i = 0; i < 9; i++) {
 */
 public void playerTwo() {
         
-for (int i = 0; i < 9; i++) {
-   final Button temp = tiles[i];
-   temp.setOnAction(ae -> {
-   temp.setUserData("O");
-      playerO = new Image("O.jpg");
-      oView = new ImageView(playerO);
-      oView.setFitWidth(150);
-      oView.setFitHeight(150);
-      oView.setPreserveRatio(true);
-      temp.setGraphic(oView);
-      moves++;
-   });
-}
-}
+// for (int i = 0; i < 9; i++) {
+//    final Button temp = tiles[i];
+//    temp.setOnAction(ae -> {
+//    temp.setUserData("O");
+//       playerO = new Image("O.jpg");
+//       oView = new ImageView(playerO);
+//       oView.setFitWidth(150);
+//       oView.setFitHeight(150);
+//       oView.setPreserveRatio(true);
+//       temp.setGraphic(oView);
+//       moves++;
+//    });
+// }
+// }
 }
