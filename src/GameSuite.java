@@ -23,6 +23,8 @@ import javafx.scene.control.Tab;
 import javafx.event.Event;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.paint.ImagePattern;
+
 
 /**
  *@author Team 17
