@@ -1,0 +1,5 @@
+
+
+Rectangle sq1 = new Rectangle(125, 125, 125, 125);
+        Image display1 = new Image("tictactoe.png");
+        sq1.setFill(new ImagePattern(display1
