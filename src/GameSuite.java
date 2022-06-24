@@ -54,14 +54,13 @@ TicTacToe one = new TicTacToe();
         label.setFill(Color.WHITE);
         HBox title = new HBox(label);
         title.setAlignment(Pos.TOP_CENTER);
-        Text teaminfo = new Text("We are Team 17 \nOur Team includes: \nOghenekome Onoyona: oonoyona3@gatech.edu\nAdeja Mann; amann34@gatech.edu\nChukwudumebi Ejikeme: cejikeme3@gatech.edu\nSachin Rajeev: srajeev8@gatech.edu");
-        teaminfo.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+        Text teaminfo = new Text("We are Team 17: \n\nOghenekome Onoyona: oonoyona3@gatech.edu\n\nAdeja Mann" +
+        "amann34@gatech.edu\n\nChukwudumebi Ejikeme: cejikeme3@gatech.edu\n\nSachin Rajeev: srajeev8@gatech.edu\n\nWelcome to Skad Games!!");
+        teaminfo.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
         teaminfo.setFill(Color.BLACK);
         HBox info = new HBox(teaminfo);
         info.setAlignment(Pos.BOTTOM_CENTER);
-        
-        //Tabs
-        
+       
         
         // Game block Grid
         Rectangle sq1 = new Rectangle(100, 100, 100, 100);
@@ -107,7 +106,24 @@ TicTacToe one = new TicTacToe();
         grid.setHgap(15);
         grid.setVgap(15);
         
+        //Tabs
+        BorderPane root = new BorderPane();
+        StackPane homepage = new StackPane();
+        homepage.getChildren().addAll(title, grid);
+        TabPane tabs = new TabPane();
+        Tab information = new Tab("Team Information");
+        information.setClosable(false);
+        information.setContent(info);
+        Tab games = new Tab("Games");
+        games.setClosable(false);
+        games.setContent(homepage);
         
+        tabs.getTabs().add(information);
+        tabs.getTabs().add(games);
+        Tab selectedTab = tabs.getSelectionModel().getSelectedItem();
+        
+
+        root.setCenter(tabs);
 
         // Background
         Image img = new Image("background.jpeg");
@@ -117,7 +133,7 @@ TicTacToe one = new TicTacToe();
         
         //Setting Stage
         StackPane backg = new StackPane();
-        backg.getChildren().addAll(bg, title,info, grid);
+        backg.getChildren().addAll(bg, root);
         primaryStage.setScene(new Scene(backg, 500, 500));
         primaryStage.show();
 
