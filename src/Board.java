@@ -73,12 +73,11 @@ for (int i = 0; i < 3; i++) {
    count++;
    }
 }
-//playerOne(); //When implementing rules delete this. Only to test it works
+playerOne(); //When implementing rules delete this. Only to test it works
 }
 
 /**
 * clear the GameBoard by setting the buttons images back to the default tile picture
-*
 */
 public void clear() {
 }
