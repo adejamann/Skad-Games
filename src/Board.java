@@ -25,6 +25,7 @@ import javafx.event.Event;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import java.lang.Math;
 
 public class Board extends GridPane {
 
@@ -34,6 +35,7 @@ ImageView xView;
 Image playerO = new Image("O.jpg");
 ImageView oView = new ImageView(playerO);
 public int moves = 0;
+public boolean gameDone = false;
 
 /*
 * initializes the gridpane
@@ -120,6 +122,8 @@ public int hasWon() {
       return 2;
    } else if (tiles[6].getUserData().equals("O") && tiles[4].getUserData().equals("O") && tiles[2].getUserData().equals("O")) {
       return 2;
+   } else if (moves >= 5) {
+      return 0;
    }
    System.out.println("test");
    return -1;
@@ -140,7 +144,23 @@ for (int i = 0; i < 9; i++) {
    xView.setFitHeight(150);
    xView.setPreserveRatio(true);
    temp.setGraphic(xView);
+   
+   int rand = (int)(Math.random() * 9);
+   while (!(tiles[rand].getUserData().equals("empty"))) {
+      rand = (int)(Math.random() * 9);
+   }
+   final Button button = tiles[rand];
+       button.setUserData("O");
+       Image playerO = new Image("O.jpg");
+       ImageView oView = new ImageView(playerO);
+       oView.setFitWidth(150);
+       oView.setFitHeight(150);
+       oView.setPreserveRatio(true);
+       button.setGraphic(oView);   
    moves++;
+   if (hasWon() == 1) {
+   System.out.println("won");
+  } 
    });
 }
 }
@@ -165,5 +185,8 @@ for (int i = 0; i < 9; i++) {
    moves++;
    });
 }
+}
+
+private void endGame() {
 }
 }

@@ -76,8 +76,7 @@ public class TicTacToe implements Game {
             //rules.setFont(Font.font("Comic Sans MS", 15));
 
         EventHandler<ActionEvent> handler = (ActionEvent ae) -> {
-            exit.setText("T");
-            //gameStage.close();
+            gameStage.close();
         };
         exit.setOnAction(handler);
     }
@@ -108,6 +107,7 @@ public class TicTacToe implements Game {
      * starts the game. the code below should be deleted when proper implementation is added.
      */
     public void play () {
+    /**
         int turn = 0;
         for (int i = 0; i < 9; i++) {
             if (turn % 2 == 0) { // and player 2 is not computer
@@ -116,18 +116,11 @@ public class TicTacToe implements Game {
                 player2.playerTwo();
             }
             turn++;
-        }
-
-        /*int turn = 0;
-        while (gameBoard.hasWon() == -1 && gameBoard.moves < 9) {
-            if (turn % 2 == 0) {
-                gameBoard.playerOne();
-            } else {
-                gameBoard.playerTwo();
+            **/
+            while (!gameBoard.gameDone) {
+            
             }
-            turn++;
-        }*/
-    }
+        }
 
     /**
      * close the application and return the number of wins in this game session to add to total
