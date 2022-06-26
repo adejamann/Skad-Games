@@ -1,0 +1,21 @@
+        BorderPane root = new BorderPane();
+        StackPane homepage = new StackPane();
+        homepage.getChildren().addAll(title, grid);
+        TabPane tabs = new TabPane();
+        Tab information = new Tab("Team Information");
+        information.setClosable(false);
+        information.setContent(info);
+        Tab games = new Tab("Games");
+        games.setClosable(false);
+        games.setContent(homepage);
+        
+        tabs.getTabs().add(information);
+        tabs.getTabs().add(games);
+        Tab selectedTab = tabs.getSelectionModel().getSelectedItem();
+        
+
+        root.setCenter(tabs);
+
+
+        StackPane backg = new StackPane();
+        backg.getChildren().addAll(bg, root);
