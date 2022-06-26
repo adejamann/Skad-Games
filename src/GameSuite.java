@@ -60,7 +60,7 @@ TicTacToe one = new TicTacToe();
         teaminfo.setFill(Color.BLACK);
         HBox info = new HBox(teaminfo);
         info.setAlignment(Pos.CENTER);
-        
+
         
         // Game block Grid
         Rectangle sq1 = new Rectangle(125, 125, 125, 125);
@@ -121,9 +121,8 @@ TicTacToe one = new TicTacToe();
 
         root.setCenter(tabs);
         
-
-        // Background
         
+        // Background
         Image img = new Image("background.jpeg");
         ImageView bg = new ImageView(img);
         bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
