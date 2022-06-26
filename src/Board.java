@@ -125,7 +125,7 @@ public int hasWon() {
    } else if (moves >= 5) {
       return 0;
    }
-   System.out.println("test");
+   System.out.println("Turn");
    return -1;
 }
 
@@ -144,6 +144,7 @@ for (int i = 0; i < 9; i++) {
    xView.setFitHeight(150);
    xView.setPreserveRatio(true);
    temp.setGraphic(xView);
+   temp.setDisable(true);
    
    int rand = (int)(Math.random() * 9);
    while (!(tiles[rand].getUserData().equals("empty"))) {
@@ -156,10 +157,13 @@ for (int i = 0; i < 9; i++) {
        oView.setFitWidth(150);
        oView.setFitHeight(150);
        oView.setPreserveRatio(true);
-       button.setGraphic(oView);   
+       button.setGraphic(oView);  
+       tiles[rand].setDisable(true); 
    moves++;
-   if (hasWon() == 1) {
-   System.out.println("won");
+   if (hasWon() == 1 || hasWon() == 2 || hasWon() == 0 ) {
+      for (int k = 0; k < 9; k++) {
+      tiles[k].setDisable(true);
+   }
   } 
    });
 }
@@ -188,5 +192,9 @@ for (int i = 0; i < 9; i++) {
 }
 
 private void endGame() {
+}
+
+public void reset() {
+   initialize();
 }
 }

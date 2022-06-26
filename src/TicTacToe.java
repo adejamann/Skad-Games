@@ -36,6 +36,7 @@ public class TicTacToe implements Game {
     private HBox options;
     private Button exit;
     private Button restart;
+    private Text label;
     private Board gameBoard;
     private Board player1; // player 1 variable
     private Board player2; // player 2 variable
@@ -58,10 +59,12 @@ public class TicTacToe implements Game {
         Button rules = new Button("Instructions");
         restart = new Button();
         exit = new Button();
+        label= new Text("Win Counter: " + 0);
         //rules.setText("Rules");
         exit.setText("Exit");
         restart.setText("Restart");
-        options.getChildren().addAll(rules, restart, exit);
+
+        options.getChildren().addAll(rules, restart, exit, label);
         root.getChildren().addAll(options, gameBoard);
 
         // need to make the rules open up in a new window
@@ -78,7 +81,13 @@ public class TicTacToe implements Game {
         EventHandler<ActionEvent> handler = (ActionEvent ae) -> {
             gameStage.close();
         };
+        
+        EventHandler<ActionEvent> restartHandler = (ActionEvent ae) -> {
+            
+        };
+        
         exit.setOnAction(handler);
+        restart.setOnAction(restartHandler);
     }
 
     /**
@@ -138,6 +147,6 @@ public class TicTacToe implements Game {
     }
 
     public void restart() {
-        //
+        gameBoard.reset(); //does not work
     }
 }
