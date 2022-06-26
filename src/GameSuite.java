@@ -54,52 +54,47 @@ TicTacToe one = new TicTacToe();
         label.setFill(Color.WHITE);
         HBox title = new HBox(label);
         title.setAlignment(Pos.TOP_CENTER);
-        Text teaminfo = new Text("We are Team 17 \nOur Team includes: \nOghenekome Onoyona: oonoyona3@gatech.edu\nAdeja Mann; amann34@gatech.edu\nChukwudumebi Ejikeme: cejikeme3@gatech.edu\nSachin Rajeev: srajeev8@gatech.edu");
-        teaminfo.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
+        Text teaminfo = new Text("We are Team 17: \n\nOghenekome Onoyona: oonoyona3@gatech.edu\n\nAdeja Mann: " +
+        "amann34@gatech.edu\n\nChukwudumebi Ejikeme: cejikeme3@gatech.edu\n\nSachin Rajeev: srajeev8@gatech.edu\n\nWelcome to Skad Games!!");
+        teaminfo.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
         teaminfo.setFill(Color.BLACK);
         HBox info = new HBox(teaminfo);
-        info.setAlignment(Pos.BOTTOM_CENTER);
-        
-        //Tabs
+        info.setAlignment(Pos.CENTER);
         
         
         // Game block Grid
-        Rectangle sq1 = new Rectangle(100, 100, 100, 100);
-        sq1.setFill(Color.WHITE);
-        Rectangle sq2 = new Rectangle(100, 100, 100, 100);
-        sq2.setFill(Color.WHITE);
-        Rectangle sq3 = new Rectangle(100, 100, 100, 100);
-        sq3.setFill(Color.WHITE);
+        Rectangle sq1 = new Rectangle(125, 125, 125, 125);
+        Image display1 = new Image("tictactoe.png");
+        sq1.setFill(new ImagePattern(display1));
+        
+        Rectangle sq2 = new Rectangle(125, 125, 125, 125);
+        Image display2 = new Image("blackjack.jpg");
+        sq2.setFill(new ImagePattern(display2));
+        
+        Rectangle sq3 = new Rectangle(125, 125, 125, 125);
+        Image display3 = new Image("worldle.jpg");
+        sq3.setFill(new ImagePattern(display3));
+        
         StackPane sq1stack = new StackPane();
-        Text sq1label = new Text("BlackJack");
-        sq1label.setFont(Font.font("Comic Sans MS", FontWeight.EXTRA_BOLD, 20));
-        sq1stack.getChildren().addAll(sq1, sq1label);
-        StackPane sq2stack = new StackPane();
-        Text sq2label = new Text("Wordle");
-        sq2label.setFont(Font.font("Comic Sans MS", FontWeight.EXTRA_BOLD, 20));
-        sq2stack.getChildren().addAll(sq2, sq2label);
-        StackPane sq3stack = new StackPane();
-        Text sq3label = new Text("Tic-Tac-Toe");
-        sq3label.setFont(Font.font("Comic Sans MS", FontWeight.EXTRA_BOLD, 15));
-        sq3stack.getChildren().addAll(sq3, sq3label);
         Button game1 = new Button();
-        game1.setText("Tic-Tac-Toe");
+        game1.setText("PLAY!");
         
         EventHandler<ActionEvent> handler = (ActionEvent ae) -> {
         one = new TicTacToe();
-       //primaryStage.hide();
+        primaryStage.hide();
         one.getStage().show();
-         };
+        };
         
         game1.setOnAction(handler);
+     
         Button game2 = new Button();
-        game2.setText("Play");
+        game2.setText("PLAY!");
         Button game3 = new Button();
-        game3.setText("Play");
+        game3.setText("PLAY!");
         GridPane grid = new GridPane();
-        grid.add(sq1stack, 0, 0, 1, 1);
-        grid.add(sq2stack, 1, 0, 1, 1);
-        grid.add(sq3stack, 2, 0, 1, 1);
+        grid.add(sq1, 0, 0, 1, 1);
+        grid.add(sq2, 1, 0, 1, 1);
+        grid.add(sq3, 2, 0, 1, 1);
         grid.add(game1, 0, 1, 1, 1);
         grid.add(game2, 1, 1, 1, 1);
         grid.add(game3, 2, 1, 1, 1);
@@ -107,9 +102,28 @@ TicTacToe one = new TicTacToe();
         grid.setHgap(15);
         grid.setVgap(15);
         
+        //Tabs
+        BorderPane root = new BorderPane();
+        StackPane homepage = new StackPane();
+        homepage.getChildren().addAll(title, grid);
+        TabPane tabs = new TabPane();
+        Tab information = new Tab("Team Information");
+        information.setClosable(false);
+        information.setContent(info);
+        Tab games = new Tab("Games");
+        games.setClosable(false);
+        games.setContent(homepage);
+        
+        tabs.getTabs().add(information);
+        tabs.getTabs().add(games);
+        Tab selectedTab = tabs.getSelectionModel().getSelectedItem();
+        
+
+        root.setCenter(tabs);
         
 
         // Background
+        
         Image img = new Image("background.jpeg");
         ImageView bg = new ImageView(img);
         bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
@@ -117,7 +131,7 @@ TicTacToe one = new TicTacToe();
         
         //Setting Stage
         StackPane backg = new StackPane();
-        backg.getChildren().addAll(bg, title,info, grid);
+        backg.getChildren().addAll(bg, root);
         primaryStage.setScene(new Scene(backg, 500, 500));
         primaryStage.show();
 
