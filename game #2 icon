@@ -1,3 +1,0 @@
- Rectangle sq2 = new Rectangle(125, 125, 125, 125);
-        Image display2 = new Image("blackjack.jpg");
-        sq2.setFill(new ImagePattern(display2));
