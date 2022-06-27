@@ -74,6 +74,11 @@ public class TicTacToe implements Game {
                         + "the game is over. If no player has 3 marks in a row, the game ends in "
                         + "a tie."));
             //rules.setFont(Font.font("Comic Sans MS", 15));
+        rules.setAlignment(Pos.CENTER);
+
+        restart.setOnAction((ActionEvent e) -> {
+            restart();
+        });
 
         EventHandler<ActionEvent> handler = (ActionEvent ae) -> {
             exit.setText("T");
@@ -102,6 +107,17 @@ public class TicTacToe implements Game {
         Scene s = new Scene(lay);
         insWindow.setScene(s);
         insWindow.showAndWait();
+    }
+
+    /**
+     * Restarts the game
+     */
+    public void restart() {
+        System.out.println("Restarting game...");
+        TicTacToe tic = new TicTacToe();
+        gameStage.hide();
+        tic.getStage().show();
+        initialize();
     }
 
     /**
@@ -142,9 +158,5 @@ public class TicTacToe implements Game {
      */
     public Stage getStage() {
         return gameStage;
-    }
-
-    public void restart() {
-        //
     }
 }
