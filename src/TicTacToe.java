@@ -78,15 +78,16 @@ public class TicTacToe implements Game {
                         + "a tie."));
             //rules.setFont(Font.font("Comic Sans MS", 15));
 
-        EventHandler<ActionEvent> handler = (ActionEvent ae) -> {
+        EventHandler<ActionEvent> exitHandler = (ActionEvent ae) -> {
             gameStage.close();
         };
         
         EventHandler<ActionEvent> restartHandler = (ActionEvent ae) -> {
+            restart();
             
         };
         
-        exit.setOnAction(handler);
+        exit.setOnAction(exitHandler);
         restart.setOnAction(restartHandler);
     }
 
@@ -146,7 +147,14 @@ public class TicTacToe implements Game {
         return gameStage;
     }
 
+    /**
+     * Restarts the game
+     */
     public void restart() {
-        gameBoard.reset(); //does not work
+        System.out.println("Restarting game...");
+        TicTacToe tic = new TicTacToe();
+        gameStage.hide();
+        tic.getStage().show();
+        initialize();
     }
-}
+ }
