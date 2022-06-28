@@ -76,19 +76,18 @@ public class TicTacToe implements Game {
                         + "or diagonally) is the winner.\n4. When all 9 squares are full, "
                         + "the game is over. If no player has 3 marks in a row, the game ends in "
                         + "a tie."));
-            //rules.setFont(Font.font("Comic Sans MS", 15));
-
+        rules.setAlignment(Pos.CENTER); 
+        
+        //fixing the functionality of the exit and restart tabs
         EventHandler<ActionEvent> exitHandler = (ActionEvent ae) -> {
             gameStage.close();
         };
-        
-        EventHandler<ActionEvent> restartHandler = (ActionEvent ae) -> {
+                
+        restart.setOnAction((ActionEvent e) -> {
             restart();
-            
-        };
+        });
         
         exit.setOnAction(exitHandler);
-        restart.setOnAction(restartHandler);
     }
 
     /**
@@ -112,6 +111,18 @@ public class TicTacToe implements Game {
         insWindow.setScene(s);
         insWindow.showAndWait();
     }
+    
+    /**
+     * Restarts the game
+     */
+    public void restart() {
+        System.out.println("Restarting game...");
+        TicTacToe tic = new TicTacToe();
+        gameStage.hide();
+        tic.getStage().show();
+        initialize();
+    }
+
 
     /**
      * starts the game. the code below should be deleted when proper implementation is added.
@@ -131,11 +142,12 @@ public class TicTacToe implements Game {
             
             }
         }
+        
+    
 
     /**
      * close the application and return the number of wins in this game session to add to total
      */
-
     public int quit() {
         return wins;
     }
@@ -147,14 +159,4 @@ public class TicTacToe implements Game {
         return gameStage;
     }
 
-    /**
-     * Restarts the game
-     */
-    public void restart() {
-        System.out.println("Restarting game...");
-        TicTacToe tic = new TicTacToe();
-        gameStage.hide();
-        tic.getStage().show();
-        initialize();
-    }
- }
+}
