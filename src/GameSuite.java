@@ -35,6 +35,7 @@ public class GameSuite extends Application {
 int totalWins = 0;
 
 TicTacToe one = new TicTacToe();
+BlackJack two = new BlackJack();
     /**
      * Creates a main method.
      * @param args String
@@ -89,6 +90,14 @@ TicTacToe one = new TicTacToe();
      
         Button game2 = new Button();
         game2.setText("PLAY!");
+        
+        EventHandler<ActionEvent> handler2 = (ActionEvent ae) -> {
+        two = new BlackJack();
+        primaryStage.hide();
+        two.getStage().show();
+        };
+
+        
         Button game3 = new Button();
         game3.setText("PLAY!");
         GridPane grid = new GridPane();

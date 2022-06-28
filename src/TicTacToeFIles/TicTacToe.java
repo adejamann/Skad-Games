@@ -59,7 +59,7 @@ public class TicTacToe implements Game {
         Button rules = new Button("Instructions");
         restart = new Button();
         exit = new Button();
-        label= new Text("Win Counter: " + 0);
+        label= new Text("Win Counter: " + wins);
         //rules.setText("Rules");
         exit.setText("Exit");
         restart.setText("Restart");
