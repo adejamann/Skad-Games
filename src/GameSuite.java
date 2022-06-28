@@ -77,6 +77,7 @@ BlackJack two = new BlackJack();
         sq3.setFill(new ImagePattern(display3));
         
         StackPane sq1stack = new StackPane();
+        //setting up game1 (tictactoe)
         Button game1 = new Button();
         game1.setText("PLAY!");
         
@@ -87,7 +88,8 @@ BlackJack two = new BlackJack();
         };
         
         game1.setOnAction(handler);
-     
+        
+        //setting up game2 (blackjack)
         Button game2 = new Button();
         game2.setText("PLAY!");
         
@@ -96,6 +98,8 @@ BlackJack two = new BlackJack();
         primaryStage.hide();
         two.getStage().show();
         };
+        
+        game2.setOnAction(handler2);
 
         
         Button game3 = new Button();
