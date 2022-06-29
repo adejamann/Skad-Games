@@ -24,6 +24,7 @@ import javafx.event.Event;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.paint.ImagePattern;
+import javafx.application.Platform;
 
 
 /**
@@ -115,10 +116,25 @@ TicTacToe one = new TicTacToe();
         grid.setHgap(15);
         grid.setVgap(15);
         
+         //Exit button
+        Button exit = new Button();
+        exit.setOnAction((ActionEvent event) -> {
+               Platform.exit();
+        });
+        Image exitapp = new Image("exitbutton.png");
+        ImageView view = new ImageView(exitapp);
+        view.setFitHeight(50);
+        view.setPreserveRatio(true);
+        exit.setPrefSize(15,15);
+        exit.setGraphic(view);
+        HBox exitbutton = new HBox(exit);
+        exitbutton.setAlignment(Pos.BOTTOM_CENTER);
+
+        
         //Tabs
         BorderPane root = new BorderPane();
         StackPane homepage = new StackPane();
-        homepage.getChildren().addAll(title, grid);
+        homepage.getChildren().addAll(title, grid, exitbutton);
         TabPane tabs = new TabPane();
         Tab information = new Tab("Team Information");
         information.setClosable(false);
