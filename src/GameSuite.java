@@ -24,6 +24,8 @@ import javafx.event.Event;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.paint.ImagePattern;
+import javafx.application.Platform;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -35,6 +37,7 @@ public class GameSuite extends Application {
 int totalWins = 0;
 
 TicTacToe one = new TicTacToe();
+//BlackJack two = new BlackJack();
     /**
      * Creates a main method.
      * @param args String
@@ -60,6 +63,20 @@ TicTacToe one = new TicTacToe();
         teaminfo.setFill(Color.BLACK);
         HBox info = new HBox(teaminfo);
         info.setAlignment(Pos.CENTER);
+        
+        //Exit button
+        Button exit = new Button();
+        exit.setOnAction((ActionEvent event) -> {
+               Platform.exit();
+        });
+        Image exitapp = new Image("exitbutton.png");
+        ImageView view = new ImageView(exitapp);
+        view.setFitHeight(50);
+        view.setPreserveRatio(true);
+        exit.setPrefSize(15,15);
+        exit.setGraphic(view);
+        HBox exitbutton = new HBox(exit);
+        exitbutton.setAlignment(Pos.BOTTOM_CENTER);
 
         
         // Game block Grid
@@ -76,19 +93,31 @@ TicTacToe one = new TicTacToe();
         sq3.setFill(new ImagePattern(display3));
         
         StackPane sq1stack = new StackPane();
+        //setting up game1 (tictactoe)
         Button game1 = new Button();
         game1.setText("PLAY!");
         
         EventHandler<ActionEvent> handler = (ActionEvent ae) -> {
         one = new TicTacToe();
-        primaryStage.hide();
+        //primaryStage.hide();
         one.getStage().show();
         };
         
         game1.setOnAction(handler);
-     
+        
+        //setting up game2 (blackjack)
         Button game2 = new Button();
         game2.setText("PLAY!");
+        
+        // EventHandler<ActionEvent> handler2 = (ActionEvent ae) -> {
+//         two = new BlackJack();
+//         primaryStage.hide();
+//         two.getStage().show();
+//         };
+//         
+//         game2.setOnAction(handler2);
+
+        
         Button game3 = new Button();
         game3.setText("PLAY!");
         GridPane grid = new GridPane();
@@ -101,11 +130,15 @@ TicTacToe one = new TicTacToe();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(15);
         grid.setVgap(15);
+        VBox home = new VBox(title, grid, exitbutton);
+        home.setSpacing(30);
+        
+
         
         //Tabs
         BorderPane root = new BorderPane();
         StackPane homepage = new StackPane();
-        homepage.getChildren().addAll(title, grid);
+        homepage.getChildren().add(home);
         TabPane tabs = new TabPane();
         Tab information = new Tab("Team Information");
         information.setClosable(false);

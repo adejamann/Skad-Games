@@ -133,7 +133,6 @@ public int hasWon() {
    } else if (full) {
       return 0;
    }
-
    return -1;
 }
 

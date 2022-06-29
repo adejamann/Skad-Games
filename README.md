@@ -1,9 +1,6 @@
 # Skad-Games
+Group 17
 
-Choice of platform: JavaFX
-
-Game 1: Tic Tac Toe
-
-Game 2: BlackJack
-
-Game 3: Wordle
+1st game: TicTacToe
+2nd game: Blackjack
+3rd game: Wordle
