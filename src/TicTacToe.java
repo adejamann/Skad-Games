@@ -27,7 +27,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 
 
-public class TicTacToe implements Game {
+public class TicTacToe extends GameSuite implements Game{
 
     int wins = 0;
     private Stage gameStage;
@@ -81,6 +81,7 @@ public class TicTacToe implements Game {
         //fixing the functionality of the exit and restart tabs
         EventHandler<ActionEvent> exitHandler = (ActionEvent ae) -> {
             gameStage.close();
+            //primaryStage.getStage.show();
         };
                 
         restart.setOnAction((ActionEvent e) -> {

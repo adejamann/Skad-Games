@@ -99,7 +99,7 @@ TicTacToe one = new TicTacToe();
         
         EventHandler<ActionEvent> handler = (ActionEvent ae) -> {
         one = new TicTacToe();
-        primaryStage.hide();
+        //primaryStage.hide();
         one.getStage().show();
         };
         
