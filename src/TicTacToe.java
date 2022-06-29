@@ -38,9 +38,7 @@ public class TicTacToe implements Game {
     private Button restart;
     private Text label;
     private Board gameBoard;
-    private Board player1; // player 1 variable
-    private Board player2; // player 2 variable
-
+   
     public TicTacToe() {
         initialize();
     }
@@ -83,11 +81,12 @@ public class TicTacToe implements Game {
         };
         
         EventHandler<ActionEvent> restartHandler = (ActionEvent ae) -> {
-            
+            gameBoard.reset();
         };
         
         exit.setOnAction(handler);
         restart.setOnAction(restartHandler);
+        update();
     }
 
     /**
@@ -147,6 +146,16 @@ public class TicTacToe implements Game {
     }
 
     public void restart() {
-        gameBoard.reset(); //does not work
+ 
+    }
+    
+    private void update() {
+    Thread t1 = new Thread(() -> {
+    while(true) {
+    label.setText("Win Counter: " + gameBoard.wins);
+    }
+   });
+   t1.setDaemon(true);
+   t1.start();
     }
 }

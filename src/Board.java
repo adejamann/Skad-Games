@@ -36,6 +36,7 @@ Image playerO = new Image("O.jpg");
 ImageView oView = new ImageView(playerO);
 public int moves = 0;
 public boolean gameDone = false;
+public int wins = 0;
 
 /*
 * initializes the gridpane
@@ -87,9 +88,16 @@ public void clear() {
 /**
 * check each button image in the gridpane to see if it is the same icon
 *that spans 3 in a row. 
-* return 1 if player1 won or 2 if player2/ the bot won . return -1 if no one one yet
+* return 1 if player1 won or 2 if player2/ the bot won . return -1 if no one one yet. return 0 if tie
 */
 public int hasWon() { 
+   boolean full = true;
+   for (int i = 0; i < tiles.length; i++) {
+      if (tiles[i].getUserData().equals("empty")) {
+         full = false;
+         break;
+      }
+   }
    if (tiles[0].getUserData().equals("X") && tiles[1].getUserData().equals("X") && tiles[2].getUserData().equals("X")) {
       return 1;
    } else if (tiles[3].getUserData().equals("X") && tiles[4].getUserData().equals("X") && tiles[5].getUserData().equals("X")) {
@@ -122,10 +130,10 @@ public int hasWon() {
       return 2;
    } else if (tiles[6].getUserData().equals("O") && tiles[4].getUserData().equals("O") && tiles[2].getUserData().equals("O")) {
       return 2;
-   } else if (moves >= 5) {
+   } else if (full) {
       return 0;
    }
-   System.out.println("Turn");
+
    return -1;
 }
 
@@ -146,6 +154,14 @@ for (int i = 0; i < 9; i++) {
    temp.setGraphic(xView);
    temp.setDisable(true);
    
+   boolean full = true;
+   for (int j = 0; j < tiles.length; j++) {
+      if (tiles[j].getUserData().equals("empty")) {
+         full = false;
+         break;
+      }
+   }
+   if (!full) {
    int rand = (int)(Math.random() * 9);
    while (!(tiles[rand].getUserData().equals("empty"))) {
       rand = (int)(Math.random() * 9);
@@ -159,10 +175,15 @@ for (int i = 0; i < 9; i++) {
        oView.setPreserveRatio(true);
        button.setGraphic(oView);  
        tiles[rand].setDisable(true); 
+   } //if 
    moves++;
    if (hasWon() == 1 || hasWon() == 2 || hasWon() == 0 ) {
       for (int k = 0; k < 9; k++) {
       tiles[k].setDisable(true);
+   }
+   
+   if (hasWon() == 1) {
+      wins++;
    }
   } 
    });
@@ -191,10 +212,12 @@ for (int i = 0; i < 9; i++) {
 }
 }
 
-private void endGame() {
+public void reset() {
+for (int i = 0; i < 9; i++) {
+   this.getChildren().remove(tiles[i]);
+}
+initialize();
+moves = 0;
 }
 
-public void reset() {
-   initialize();
-}
 }
