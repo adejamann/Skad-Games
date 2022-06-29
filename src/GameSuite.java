@@ -138,7 +138,7 @@ TicTacToe one = new TicTacToe();
         //Tabs
         BorderPane root = new BorderPane();
         StackPane homepage = new StackPane();
-        homepage.getChildren().addAll(title, grid, exitbutton);
+        homepage.getChildren().add(home);
         TabPane tabs = new TabPane();
         Tab information = new Tab("Team Information");
         information.setClosable(false);
