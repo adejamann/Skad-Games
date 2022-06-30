@@ -36,6 +36,7 @@ Image playerO = new Image("O.jpg");
 ImageView oView = new ImageView(playerO);
 public int moves = 0;
 public boolean gameDone = false;
+public int wins = 0;
 
 /*
 * initializes the gridpane
@@ -125,7 +126,6 @@ public int hasWon() {
    } else if (moves >= 5) {
       return 0;
    }
-   //System.out.println("Turn");
    return -1;
 }
 
@@ -133,40 +133,53 @@ public int hasWon() {
 * Call this when its player 1 turn so when they click any tile it changes to X.
 */
 public void playerOne() {
-        
-for (int i = 0; i < 9; i++) {
-   final Button temp = tiles[i];
-   temp.setOnAction(ae -> {
-   temp.setUserData("X");
-   playerX = new Image("X.jpg");
-   xView = new ImageView(playerX);
-   xView.setFitWidth(150);
-   xView.setFitHeight(150);
-   xView.setPreserveRatio(true);
-   temp.setGraphic(xView);
-   temp.setDisable(true);
-   
-   int rand = (int)(Math.random() * 9);
-   while (!(tiles[rand].getUserData().equals("empty"))) {
-      rand = (int)(Math.random() * 9);
-   }
-   final Button button = tiles[rand];
-       button.setUserData("O");
-       Image playerO = new Image("O.jpg");
-       ImageView oView = new ImageView(playerO);
-       oView.setFitWidth(150);
-       oView.setFitHeight(150);
-       oView.setPreserveRatio(true);
-       button.setGraphic(oView);  
-       tiles[rand].setDisable(true); 
-   moves++;
-   if (hasWon() == 1 || hasWon() == 2 || hasWon() == 0 ) {
-      for (int k = 0; k < 9; k++) {
-      tiles[k].setDisable(true);
-   }
-  } 
-   });
-}
+
+    for (int i = 0; i < 9; i++) {
+        final Button temp = tiles[i];
+        temp.setOnAction(ae -> {
+            temp.setUserData("X");
+            playerX = new Image("X.jpg");
+            xView = new ImageView(playerX);
+            xView.setFitWidth(150);
+            xView.setFitHeight(150);
+            xView.setPreserveRatio(true);
+            temp.setGraphic(xView);
+            temp.setDisable(true);
+
+            boolean full = true;
+            for (int j = 0; j < tiles.length; j++) {
+                if (tiles[j].getUserData().equals("empty")) {
+                    full = false;
+                    break;
+                }
+            }
+            if (!full) {
+                int rand = (int)(Math.random() * 9);
+                while (!(tiles[rand].getUserData().equals("empty"))) {
+                    rand = (int)(Math.random() * 9);
+                }
+                final Button button = tiles[rand];
+                button.setUserData("O");
+                Image playerO = new Image("O.jpg");
+                ImageView oView = new ImageView(playerO);
+                oView.setFitWidth(150);
+                oView.setFitHeight(150);
+                oView.setPreserveRatio(true);
+                button.setGraphic(oView);
+                tiles[rand].setDisable(true);
+            } //if
+            moves++;
+            if (hasWon() == 1 || hasWon() == 2 || hasWon() == 0 ) {
+                for (int k = 0; k < 9; k++) {
+                    tiles[k].setDisable(true);
+                }
+
+                if (hasWon() == 1) {
+                    wins++;
+                }
+            }
+        });
+    }
 }
 
 /**
@@ -195,6 +208,11 @@ private void endGame() {
 }
 
 public void reset() {
-   initialize();
-}
+    for (int i = 0; i < 9; i++) {
+        this.getChildren().remove(tiles[i]);
+        }
+    initialize();
+    moves = 0;
+    }
+
 }
