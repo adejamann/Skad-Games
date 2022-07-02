@@ -15,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.geometry.Pos;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.text.FontWeight;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Button;
@@ -84,6 +85,7 @@ private Text labelWins;
         });
         
         labelWins = new Text("Win Counter: " + wins);
+        labelWins.setTextAlignment(TextAlignment.CENTER);
 
         
         HBox options = new HBox(10);
