@@ -82,15 +82,10 @@ public class TicTacToe implements Game{
 	};
         //fixing the functionality of the exit and restart tabs
         EventHandler<ActionEvent> exitHandler = (ActionEvent ae) -> {
-            gameStage.close();
-	    // primaryStage.getStage().show();
-        };
+            quit();
+	     };
 
-	/*
-	  restart.setOnAction((ActionEvent e) -> {
-	  restart();
-	  });
-	*/
+
         restart.setOnAction(restartHandler);
         update();
         exit.setOnAction(exitHandler);
@@ -122,32 +117,23 @@ public class TicTacToe implements Game{
      * Restarts the game
      */
     public void restart() {
+         /**
         //System.out.println("Restarting game...");
         TicTacToe tic = new TicTacToe();
         gameStage.hide();
         tic.getStage().show();
         initialize();
+        **/
+        gameBoard.reset();
     }
 
 
     /**
-     * starts the game. the code below should be deleted when proper implementation is added.
+     * starts the game. 
      */
     public void play () {
-	/**
-	   int turn = 0;
-	   for (int i = 0; i < 9; i++) {
-	   if (turn % 2 == 0) { // and player 2 is not computer
-	   player1.playerOne();
-	   } else { // when player 2 is not computer
-	   player2.playerTwo();
-	   }
-	   turn++;
-	**/
-	while (!gameBoard.gameDone) {
-            
-	}
-    }
+      gameBoard.playerOne();
+	 }
         
     
 
@@ -155,6 +141,7 @@ public class TicTacToe implements Game{
      * close the application and return the number of wins in this game session to add to total
      */
     public int quit() {
+        gameStage.close();
         return wins;
     }
 
@@ -169,6 +156,7 @@ public class TicTacToe implements Game{
     private void update() {
 	Thread t1 = new Thread(() -> {
 		while(true) {
+          wins = gameBoard.wins;
 		    label.setText("Win Counter: " + gameBoard.wins);
 		}
 	});
