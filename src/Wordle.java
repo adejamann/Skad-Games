@@ -30,7 +30,7 @@ import javafx.scene.control.Alert;
 import java.util.Random;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
-import javafx.scene.text.TextAlignment;
+
 
 public class Wordle implements Game{
 
@@ -84,7 +84,6 @@ private Text labelWins;
         });
         
         labelWins = new Text("Win Counter: " + wins);
-        labelWins.setTextAlignment(TextAlignment.CENTER);
 
         
         HBox options = new HBox(10);
