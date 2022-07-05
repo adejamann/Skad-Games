@@ -42,7 +42,7 @@ public class Wordle implements Game {
     public String start = "";
     public String attempt;
     Button[][] letterArr = gameBoard.getArray();
-    Scene gameScene = gameBoard.getScene();
+    //Scene gameScene = gameBoard.getScene();
 
 
     public Wordle() {
@@ -176,6 +176,20 @@ public class Wordle implements Game {
         int n = rand.nextInt(Words.list.size());
         playerGuess = (Words.list).get(n).toUpperCase();
         
+    }
+
+    
+    public void play() {
+        gameBoard = new WordleBoard();
+        HBox hbox = new HBox(10);
+        hbox.setAlignment(Pos.CENTER);
+        hbox.getChildren().addAll(gameBoard);
+        StackPane sp = new StackPane();
+        sp.getChildren().addAll(hbox, getButtonMenu());
+        Scene scene = new Scene(sp, 550, 610);
+        gameStage.setScene(scene);
+        gameStage.show();
+        
         
         /*
         * abstract class for the typing input from user
@@ -217,25 +231,13 @@ public class Wordle implements Game {
             }
         }
         
-        gameScene.setOnKeyPressed(new Typing() {
+        scene.setOnKeyPressed(new Typing() {
              @Override
              public void handle(KeyEvent e) {
                  super.handle(e);
              }
         });
-    }
 
-    
-    public void play() {
-        gameBoard = new WordleBoard();
-        HBox hbox = new HBox(10);
-        hbox.setAlignment(Pos.CENTER);
-        hbox.getChildren().addAll(gameBoard);
-        StackPane sp = new StackPane();
-        sp.getChildren().addAll(hbox, getButtonMenu());
-        Scene scene = new Scene(sp, 550, 610);
-        gameStage.setScene(scene);
-        gameStage.show();
 
     }
     
