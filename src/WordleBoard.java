@@ -39,29 +39,34 @@ Button[][] letters = new Button[5][6];
 
 
 public WordleBoard () {
-super();
-this.setHgap(6);
-this.setVgap(6);
-this.setPadding(new Insets(300, 300, 300, 300));
-initialize();
+ super();
+ this.setHgap(6);
+ this.setVgap(6);
+ this.setPadding(new Insets(300, 300, 300, 300));
+ initialize();
 }
 
-private void initialize() {
-for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 6; j++) {
-                letters[i][j] = new Button();
-                letters[i][j].setMinWidth(50);
-                letters[i][j].setStyle("-fx-background-color: #F8F8FF; -fx-border-color: #000000");
-                letters[i][j].setMinHeight(50);
-                this.add(letters[i][j], i, j);
-            }
-        }
+protected void initialize() {
+ for (int i = 0; i < 5; i++) {
+     for (int j = 0; j < 6; j++) {
+         letters[i][j] = new Button();
+         letters[i][j].setMinWidth(50);
+         letters[i][j].setStyle("-fx-background-color: #F8F8FF; -fx-border-color: #000000");
+         letters[i][j].setMinHeight(50);
+         this.add(letters[i][j], i, j);
+     }
+ } 
 }
 
 public Button[][] getArray() {
-   return letters;
+   return letters.clone();
 }
 
+//getting the scene 
+// public Scene getScene() {
+//    return this.getScene();
+// }
+// 
 
 
 
