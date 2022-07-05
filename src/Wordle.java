@@ -46,8 +46,8 @@ public class Wordle implements Game {
 
 
     public Wordle() {
-    gameStage = new Stage();
-    gameStage.setTitle("Wordle");
+      gameStage = new Stage();
+      gameStage.setTitle("Wordle");
     }
 
     /**
@@ -87,7 +87,6 @@ public class Wordle implements Game {
         //functionality of exit button
         Button exit = new Button("Exit");
         exit.setOnAction((ActionEvent e) -> {
-            restart();
             quit();
             
         });
