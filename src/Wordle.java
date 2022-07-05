@@ -34,10 +34,12 @@ import javafx.scene.input.KeyCode;
 
 public class Wordle implements Game{
 
-public int wins = 0;
+public int counter = 0;
 private WordleBoard gameBoard;
 private Stage gameStage;
 private Text labelWins;
+public String start = "";
+public String attempt;
 
     public Wordle() {
     gameStage = new Stage();
@@ -72,15 +74,31 @@ private Text labelWins;
 				       + "5. Try to Guess the word as early as possible to brag to your friends"
 				       + "!"));
         rules.setAlignment(Pos.CENTER); 
-        Button reset = new Button("Reset");
-        reset.setOnAction((ActionEvent e) -> {
-            restart();
-        });
+        //A button that will call the restart method
+         Button restart = new Button("Restart");
+         restart.setOnAction((ActionEvent e) -> {
+            restartgame();
+         });
+         
+        //A button that will exit the game
         Button exit = new Button("Exit");
         exit.setOnAction((ActionEvent e) -> {
-            restart();
             quit();
             
+        });
+        
+        Button enter = new Button("Enter");
+        enter.setOnAction((ActionEvent e) -> {
+            guess();
+            if (start.equalsIgnoreCase(guess)) {
+                display("Wonderful!", "Great job! You got the word in " + counter + " attempts!");
+                restartgame();
+            }
+            start = "";
+            if (counter >= 6) {
+                display("Failed", "Unfortunately, you ran out of guesses :(\nBetter luck next time!");
+                restartgame();
+            }
         });
         
         labelWins = new Text("Win Counter: " + wins);
@@ -88,7 +106,7 @@ private Text labelWins;
         
         HBox options = new HBox(10);
         options.setSpacing(5);
-        options.getChildren().addAll(rules, reset, exit, labelWins);
+        options.getChildren().addAll(rules, restart, exit, labelWins);
         options.setPadding(new Insets(0, 10, 0, 10));
         options.setAlignment(Pos.TOP_CENTER);
         
@@ -129,11 +147,26 @@ private Text labelWins;
         insWindow.setScene(s);
         insWindow.showAndWait();
     }
+    
+    public void guess() {
+        for (int i = 0; i < 5; i++) {
+            if (attempt.charAt(i) == start.charAt(i)) {
+                letterArr[i][counter].setStyle("-fx-background-color: chartreuse; -fx-border-color: #000000");
+            } else if (attempt.contains(start.subSequence(i, i+1))) {
+                letterArr[i][counter].setStyle("-fx-background-color: goldenrod; -fx-border-color: #000000");
+            } else {
+                letterArr[i][counter].setStyle("-fx-background-color: lightgray; -fx-border-color: #000000");
+            }
+        }
+        counter++;
+    }
 
-    /**
-     *
-     */
-    public void restart() {
+   //Method that will restart the game
+    public void restartgame() {
+      counter = 0;
+      start = "";
+      System.out.println("Game Restarting...");
+      start(stage);
     }
 
     
@@ -149,10 +182,19 @@ private Text labelWins;
         gameStage.show();
 
     }
+     @Override
+    public void start(Stage primary) {
+        stage = primary;
+        primary.setTitle("Welcome to Wordle");
+        Random rand = new Random();
+        int n = rand.nextInt(Words.list.size());
+        playerGuess = (Words.list).get(n).toUpperCase();
+    }
+    
     
     public int quit() {
         gameStage.close();
-        return wins;
+        return counter;
     }
 }
 
