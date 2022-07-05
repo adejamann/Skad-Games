@@ -256,7 +256,7 @@ public class Wordle implements Game {
     
     public int quit() {
         gameStage.close();
-        return counter;
+        return wins;
     }
 }
 
