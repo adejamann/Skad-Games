@@ -38,9 +38,7 @@ public class TicTacToe implements Game{
     private Button restart;
     private Text label;
     private Board gameBoard;
-    private Board player1; // player 1 variable
-    private Board player2; // player 2 variable
-
+   
     public TicTacToe() {
         initialize();
     }
@@ -69,25 +67,27 @@ public class TicTacToe implements Game{
 
         // need to make the rules open up in a new window
         rules.setOnAction(e -> display("Instructions",
-                "1. The game is played on a grid that's 3 squares by 3 squares.\n"
-                        + "2. You are X, your friend (or the computer in this case) is O. "
-                        + "Players take turns putting their marks in empty squares.\n"
-                        + "3. The first player to get 3 of her marks in a row (up, down, across, "
-                        + "or diagonally) is the winner.\n4. When all 9 squares are full, "
-                        + "the game is over. If no player has 3 marks in a row, the game ends in "
-                        + "a tie."));
+				       "1. The game is played on a grid that's 3 squares by 3 squares.\n"
+				       + "2. You are X, your friend (or the computer in this case) is O. "
+				       + "Players take turns putting their marks in empty squares.\n"
+				       + "3. The first player to get 3 of her marks in a row (up, down, across, "
+				       + "or diagonally) is the winner.\n4. When all 9 squares are full, "
+				       + "the game is over. If no player has 3 marks in a row, the game ends in "
+				       + "a tie."));
         rules.setAlignment(Pos.CENTER); 
         
+
+        EventHandler<ActionEvent> restartHandler = (ActionEvent ae) -> {
+            gameBoard.reset();
+	};
         //fixing the functionality of the exit and restart tabs
         EventHandler<ActionEvent> exitHandler = (ActionEvent ae) -> {
-            gameStage.close();
-           // primaryStage.getStage().show();
-        };
-                
-        restart.setOnAction((ActionEvent e) -> {
-            restart();
-        });
-        
+            quit();
+	     };
+
+
+        restart.setOnAction(restartHandler);
+        update();
         exit.setOnAction(exitHandler);
     }
 
@@ -117,32 +117,23 @@ public class TicTacToe implements Game{
      * Restarts the game
      */
     public void restart() {
+         /**
         //System.out.println("Restarting game...");
         TicTacToe tic = new TicTacToe();
         gameStage.hide();
         tic.getStage().show();
         initialize();
+        **/
+        gameBoard.reset();
     }
 
 
     /**
-     * starts the game. the code below should be deleted when proper implementation is added.
+     * starts the game. 
      */
     public void play () {
-    /**
-        int turn = 0;
-        for (int i = 0; i < 9; i++) {
-            if (turn % 2 == 0) { // and player 2 is not computer
-                player1.playerOne();
-            } else { // when player 2 is not computer
-                player2.playerTwo();
-            }
-            turn++;
-            **/
-            while (!gameBoard.gameDone) {
-            
-            }
-        }
+      gameBoard.playerOne();
+	 }
         
     
 
@@ -150,6 +141,7 @@ public class TicTacToe implements Game{
      * close the application and return the number of wins in this game session to add to total
      */
     public int quit() {
+        gameStage.close();
         return wins;
     }
 
@@ -160,4 +152,15 @@ public class TicTacToe implements Game{
         return gameStage;
     }
 
+    
+    private void update() {
+	Thread t1 = new Thread(() -> {
+		while(true) {
+          wins = gameBoard.wins;
+		    label.setText("Win Counter: " + gameBoard.wins);
+		}
+	});
+	t1.setDaemon(true);
+	t1.start();
+    }
 }

@@ -37,7 +37,7 @@ public class GameSuite extends Application {
 int totalWins = 0;
 
 TicTacToe one = new TicTacToe();
-//BlackJack two = new BlackJack();
+Wordle two = new Wordle();
     /**
      * Creates a main method.
      * @param args String
@@ -85,11 +85,11 @@ TicTacToe one = new TicTacToe();
         sq1.setFill(new ImagePattern(display1));
         
         Rectangle sq2 = new Rectangle(125, 125, 125, 125);
-        Image display2 = new Image("blackjack.jpg");
+        Image display2 = new Image("worldle.jpg");
         sq2.setFill(new ImagePattern(display2));
         
         Rectangle sq3 = new Rectangle(125, 125, 125, 125);
-        Image display3 = new Image("worldle.jpg");
+        Image display3 = new Image("blackjack.jpg");
         sq3.setFill(new ImagePattern(display3));
         
         StackPane sq1stack = new StackPane();
@@ -97,25 +97,22 @@ TicTacToe one = new TicTacToe();
         Button game1 = new Button();
         game1.setText("PLAY!");
         
-        EventHandler<ActionEvent> handler = (ActionEvent ae) -> {
-        one = new TicTacToe();
-        //primaryStage.hide();
+        EventHandler<ActionEvent> launchGameOne = (ActionEvent ae) -> {
+        //one = new TicTacToe();
+        one.restart();
         one.getStage().show();
         };
         
-        game1.setOnAction(handler);
+        game1.setOnAction(launchGameOne);
         
-        //setting up game2 (blackjack)
+        //setting up game2 (Wordle)
         Button game2 = new Button();
         game2.setText("PLAY!");
         
-        // EventHandler<ActionEvent> handler2 = (ActionEvent ae) -> {
-//         two = new BlackJack();
-//         primaryStage.hide();
-//         two.getStage().show();
-//         };
-//         
-//         game2.setOnAction(handler2);
+        EventHandler<ActionEvent> launchGameTwo = (ActionEvent ae) -> {
+        two.play();
+        };         
+       game2.setOnAction(launchGameTwo);
 
         
         Button game3 = new Button();
@@ -130,7 +127,13 @@ TicTacToe one = new TicTacToe();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(15);
         grid.setVgap(15);
-        VBox home = new VBox(title, grid, exitbutton);
+        
+        Text winCount = new Text("Wins: " + 0);
+        winCount.setFont(Font.font("Comic Sans MS", 20));
+        winCount.setFill(Color.WHITE);
+        HBox win = new HBox(winCount);
+        win.setAlignment(Pos.CENTER);
+        VBox home = new VBox(title, grid, win, exitbutton);
         home.setSpacing(30);
         
 
@@ -161,11 +164,25 @@ TicTacToe one = new TicTacToe();
         bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
         bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
         
+        
+        
+        
         //Setting Stage
         StackPane backg = new StackPane();
         backg.getChildren().addAll(bg, root);
         primaryStage.setScene(new Scene(backg, 500, 500));
         primaryStage.show();
+        
+        Thread t2 = new Thread(() -> {
+		   while(true) {
+         totalWins = one.wins;
+		   winCount.setText("Win Counter: " + totalWins);
+         //System.out.println("Wins");
+		}
+	});
+	t2.setDaemon(true);
+	t2.start();
 
     }
-}
+        
+   }
