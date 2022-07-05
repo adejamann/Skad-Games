@@ -10,18 +10,12 @@ import javafx.stage.Stage;
 public void restartgame() {
 count = 0;
 begin = "";
-System.out.println"Game Restarting...";
+System.out.println("Game Restarting...");
 start(stage);
 
 
 //A button that will call the restart method
-Button restart = new button;
-Image restartButton = new Image("resetbutton.jpg");
-ImageView restartview = nnew ImageView(restartButton);
-restartView.setFitHeight(20);
-restartView.setPreserveRatio(true);
-restart.setPrefSize(15,15);
-restart.setGraphic(restartview);
+Button restart = new Button("Restart);
 restart.setOnAction((ActionEvent e) -> {
-   restart();
+   restartgame();
 });
