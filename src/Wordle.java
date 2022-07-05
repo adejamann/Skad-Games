@@ -42,6 +42,7 @@ public class Wordle implements Game {
     public String start = "";
     public String attempt;
     Button[][] letterArr = gameBoard.getArray();
+    Scene gameScene = gameBoard.getScene();
 
 
     public Wordle() {
@@ -216,7 +217,7 @@ public class Wordle implements Game {
             }
         }
         
-        letterArr.setOnKeyPressed(new Typing() {
+        gameScene.setOnKeyPressed(new Typing() {
              @Override
              public void handle(KeyEvent e) {
                  super.handle(e);

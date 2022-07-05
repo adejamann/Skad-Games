@@ -63,9 +63,9 @@ public Button[][] getArray() {
 }
 
 //getting the scene 
-// public Scene getScene() {
-//    return this.getScene();
-// }
+public Scene getScene() {
+   return this.getScene();
+}
 
 
 
