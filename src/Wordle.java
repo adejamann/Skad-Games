@@ -32,14 +32,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 
 
-public class Wordle implements Game{
-
-public int counter = 0;
-private WordleBoard gameBoard;
-private Stage gameStage;
-private Text labelWins;
-public String start = "";
-public String attempt;
+public class Wordle implements Game {
+    public int counter = 0;
+    private WordleBoard gameBoard;
+    private Stage gameStage;
+    private Text labelWins;
+    public String start = "";
+    public String attempt;
+    Button[][] letterArr = gameBoard.getArray();
 
     public Wordle() {
     gameStage = new Stage();
@@ -86,21 +86,19 @@ public String attempt;
             quit();
             
         });
-        
         Button enter = new Button("Enter");
         enter.setOnAction((ActionEvent e) -> {
             guess();
             if (start.equalsIgnoreCase(guess)) {
                 display("Wonderful!", "Great job! You got the word in " + counter + " attempts!");
-                restartgame();
+                restart();
             }
             start = "";
             if (counter >= 6) {
                 display("Failed", "Unfortunately, you ran out of guesses :(\nBetter luck next time!");
-                restartgame();
+                restart();
             }
         });
-        
         labelWins = new Text("Win Counter: " + wins);
 
         
@@ -169,6 +167,15 @@ public String attempt;
       start(stage);
     }
 
+    @Override
+    public void start(Stage primary) {
+        stage = primary;
+        primary.setTitle("Welcome to Wordle");
+        Random rand = new Random();
+        int n = rand.nextInt(Words.list.size());
+        playerGuess = (Words.list).get(n).toUpperCase();
+    }
+
     
     public void play() {
         gameBoard = new WordleBoard();
@@ -182,15 +189,19 @@ public String attempt;
         gameStage.show();
 
     }
-     @Override
-    public void start(Stage primary) {
-        stage = primary;
-        primary.setTitle("Welcome to Wordle");
-        Random rand = new Random();
-        int n = rand.nextInt(Words.list.size());
-        playerGuess = (Words.list).get(n).toUpperCase();
+
+    public void guess() {
+        for (int i = 0; i < 5; i++) {
+            if (attempt.charAt(i) == start.charAt(i)) {
+                letterArr[i][counter].setStyle("-fx-background-color: chartreuse; -fx-border-color: #000000");
+            } else if (attempt.contains(start.subSequence(i, i+1))) {
+                letterArr[i][counter].setStyle("-fx-background-color: goldenrod; -fx-border-color: #000000");
+            } else {
+                letterArr[i][counter].setStyle("-fx-background-color: lightgray; -fx-border-color: #000000");
+            }
+        }
+        counter++;
     }
-    
     
     public int quit() {
         gameStage.close();

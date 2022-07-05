@@ -59,7 +59,7 @@ for (int i = 0; i < 5; i++) {
 }
 
 public Button[][] getArray() {
-   return letters;
+   return letters.clone();
 }
 
 
