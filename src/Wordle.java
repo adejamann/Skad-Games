@@ -32,12 +32,17 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 
 
-public class Wordle implements Game{
+public class Wordle implements Game {
+    
+    private static int counter; 
+    public int wins = 0;
+    private WordleBoard gameBoard;
+    private Stage gameStage;
+    private Text labelWins;
+    public String start = "";
+    public String attempt;
+    Button[][] letterArr = gameBoard.getArray();
 
-public int wins = 0;
-private WordleBoard gameBoard;
-private Stage gameStage;
-private Text labelWins;
 
     public Wordle() {
     gameStage = new Stage();
@@ -57,13 +62,13 @@ private Text labelWins;
      *         containing buttons and title
      */
     BorderPane getButtonMenu() {
-        Button input = new Button("Enter");
+        //Button input = new Button("Enter");
         
         Label name = new Label("WORDLE");
         name.setFont(Font.font("Comic Sans MS", 30));
         
-       
-        Button rules = new Button("rules");
+       //instruction button and rules
+        Button rules = new Button("Rules");
         rules.setOnAction(e -> display("Instructions",
 				       "1. The game is played on a grid that's 5 squares by 6 squares.\n"
 				       + "2. You have 5 tries to guess the 6 letter word. \n "
@@ -72,10 +77,13 @@ private Text labelWins;
 				       + "5. Try to Guess the word as early as possible to brag to your friends"
 				       + "!"));
         rules.setAlignment(Pos.CENTER); 
+        
+        //functionality of reset button
         Button reset = new Button("Reset");
         reset.setOnAction((ActionEvent e) -> {
             restart();
         });
+        //functionality of exit button
         Button exit = new Button("Exit");
         exit.setOnAction((ActionEvent e) -> {
             restart();
@@ -83,6 +91,23 @@ private Text labelWins;
             
         });
         
+        //functionality of enter button
+        Button enter = new Button("Enter");
+        enter.setOnAction((ActionEvent e) -> {
+            guess();
+            if (start.equalsIgnoreCase(attempt)) {
+                display("Genius", "Congrats! You got the word in " + counter + " tries!");
+                wins += 1; 
+                restart(); 
+            }
+            start = "";
+            if (counter >= 6) {
+                display("Failed", "Sorry, you're out of guesses :(\nBetter luck next time!");
+                restart();
+            }
+        });
+        
+        //win counter
         labelWins = new Text("Win Counter: " + wins);
 
         
@@ -99,13 +124,15 @@ private Text labelWins;
         title.setPadding(new Insets(50, 50, 50, 50));
        
         VBox stacking = new VBox();
-        stacking.getChildren().addAll(input);
+        stacking.getChildren().addAll(enter);
         stacking.setAlignment(Pos.BOTTOM_CENTER);
         BorderPane root = new BorderPane();
         root.setTop(title);
         root.setBottom(stacking);
         return root;
     }
+    
+
 
        
     /**
@@ -131,9 +158,70 @@ private Text labelWins;
     }
 
     /**
-     *
+     * restart method; will clear the scene and start the game over
      */
     public void restart() {
+        counter = 0;
+        start = ""; 
+        //start(stage); 
+        gameBoard.initialize(); 
+    }
+    
+    //@Override
+    public void start(Stage primary) {
+        gameStage = primary;
+        primary.setTitle("Welcome to Wordle");
+        Random rand = new Random();
+        int n = rand.nextInt(Words.list.size());
+        playerGuess = (Words.list).get(n).toUpperCase();
+        
+        
+        /*
+        * abstract class for the typing input from user
+        */
+        abstract class Typing implements EventHandler<KeyEvent> {
+            @Override
+            public void handle(KeyEvent e) {
+                String input = e.getCode().toString();
+                if (e.getCode() == KeyCode.ENTER) {
+                    if (start.length() != 5) {
+                        Alert a = new Alert(Alert.AlertType.ERROR, "Your guess must be 5 letters long!");
+                        a.show();
+                    } else {
+                        guess();
+                        if (start.equalsIgnoreCase(attempt)) {
+                            display("Genius", "Congrats! You got the word in " + counter + " tries!");
+                            restart();
+                        }
+                        start = "";
+                        if (counter >= 6) {
+                            display("Failed", "Sorry, you're out of guesses :(\nBetter luck next time!");
+                            restart();
+                        }
+                    }
+                } else if (e.getCode() == KeyCode.BACK_SPACE) {
+                    if (start.length() > 0) {
+                        letterArr[start.length() - 1][counter].setText("");
+                        start = start.substring(0, start.length() - 1);
+                    }
+                } else if (input.length() == 1 && start.length() < 5) {
+                    if (!input.equals("") && !Character.isDigit(input.charAt(0))) {
+                        start = start + input;
+                        letterArr[start.length() - 1][counter].setText(input);
+                    }
+                } else if (start.length() == 5 && input.length() == 1) {
+                    Alert a = new Alert(Alert.AlertType.ERROR, "This input is not allowed!");
+                    a.show();
+                }
+            }
+        }
+        
+        letterArr.setOnKeyPressed(new Typing() {
+             @Override
+             public void handle(KeyEvent e) {
+                 super.handle(e);
+             }
+        });
     }
 
     
@@ -150,9 +238,23 @@ private Text labelWins;
 
     }
     
+    public void guess() {
+        for (int i = 0; i < 5; i++) {
+            if (attempt.charAt(i) == start.charAt(i)) {
+                letterArr[i][counter].setStyle("-fx-background-color: chartreuse; -fx-border-color: #000000");
+            } else if (attempt.contains(start.subSequence(i, i + 1))) {
+                letterArr[i][counter].setStyle("-fx-background-color: goldenrod; -fx-border-color: #000000");
+            } else {
+                letterArr[i][counter].setStyle("-fx-background-color: lightgray; -fx-border-color: #000000");
+            }
+        }
+        counter++;
+    }
+
+    
     public int quit() {
         gameStage.close();
-        return wins;
+        return counter;
     }
 }
 
