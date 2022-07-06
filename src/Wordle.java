@@ -162,7 +162,7 @@ public class Wordle implements Game {
         word = new Word().word;
         word = word.toUpperCase();
         System.out.println(word);
-         Image img = new Image("background.jpeg");
+        Image img = new Image("background.jpeg");
         ImageView bg = new ImageView(img);
         bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
         bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
