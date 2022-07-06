@@ -72,7 +72,7 @@ public class Wordle implements Game {
         Button rules = new Button("Instruction");
         rules.setOnAction(e -> display("Instructions",
 				       "1. The game is played on a grid that's 5 squares by 6 squares.\n"
-				       + "2. You have 5 tries to guess the 6 letter word. \n "
+				       + "2. You have 5 tries to guess the 6 letter word. \n"
 				       + "3. A Green light means that the letter is in word and in the correct position. \n"
 				       + "4. A Yellow light means the letter is in the word, but not in the correct position. \n"
 				       + "5. Try to Guess the word as early as possible to brag to your friends"
