@@ -159,7 +159,7 @@ public class Wordle implements Game {
         primary.setTitle("Welcome to Wordle");
         Random rand = new Random();
         int n = rand.nextInt(Words.list.size());
-        playerGuess = (Words.list).get(n).toUpperCase();
+        attempt = (Words.list).get(n).toUpperCase();
     }
 
     
