@@ -46,21 +46,40 @@ this.setPadding(new Insets(300, 300, 300, 300));
 initialize();
 }
 
-private void initialize() {
+public void initialize() {
 for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 6; j++) {
+        for (int j = 0; j < 6; j++) {
+                letters[i][j] = new Button();
+                this.add(letters[i][j], i, j);
+                letters[i][j].setMinWidth(50);
+                letters[i][j].setStyle("-fx-background-color: #F8F8FF; -fx-border-color: #000000");
+                letters[i][j].setMinHeight(50);
+                
+                }
+        }
+        
+        
+}
+
+
+
+public Button[][] getArray() {
+   return letters;
+}
+
+public void reset() {
+for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 6; j++) {
+               this.getChildren().remove(letters[i][j]);
                 letters[i][j] = new Button();
                 letters[i][j].setMinWidth(50);
                 letters[i][j].setStyle("-fx-background-color: #F8F8FF; -fx-border-color: #000000");
                 letters[i][j].setMinHeight(50);
                 this.add(letters[i][j], i, j);
-            }
-        }
-}
+         }
+       }
 
-public Button[][] getArray() {
-   return letters;
-}
+ }
 
 
 

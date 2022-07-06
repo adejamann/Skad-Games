@@ -32,13 +32,19 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.TextAlignment;
 
-public class Wordle implements Game{
+public class Wordle implements Game {
 
-public int wins = 0;
-private WordleBoard gameBoard;
-private Stage gameStage;
-private Text labelWins;
-
+    public int wins = 0;
+    public int counter = 0;
+    private WordleBoard gameBoard;
+    private Stage gameStage;
+    private Text labelWins;
+    public String userGuess = "";
+    public String word = "";
+    public String attempt;
+    private int count = 0;
+ 
+    
     public Wordle() {
     gameStage = new Stage();
     gameStage.setTitle("Wordle");
@@ -57,13 +63,13 @@ private Text labelWins;
      *         containing buttons and title
      */
     BorderPane getButtonMenu() {
-        Button input = new Button("Enter");
+        //Button input = new Button("Enter");
         
         Label name = new Label("WORDLE");
         name.setFont(Font.font("Comic Sans MS", 30));
         
        
-        Button rules = new Button("rules");
+        Button rules = new Button("Instruction");
         rules.setOnAction(e -> display("Instructions",
 				       "1. The game is played on a grid that's 5 squares by 6 squares.\n"
 				       + "2. You have 5 tries to guess the 6 letter word. \n "
@@ -99,12 +105,8 @@ private Text labelWins;
         title.setAlignment(Pos.TOP_CENTER);
         title.setPadding(new Insets(50, 50, 50, 50));
        
-        VBox stacking = new VBox();
-        stacking.getChildren().addAll(input);
-        stacking.setAlignment(Pos.BOTTOM_CENTER);
         BorderPane root = new BorderPane();
         root.setTop(title);
-        root.setBottom(stacking);
         return root;
     }
 
@@ -134,8 +136,21 @@ private Text labelWins;
     /**
      *
      */
-    public void restart() {
+    
+    
+     public void checkAnswer() {
+        for (int i = 0; i < 5; i++) {
+            if (word.charAt(i) == userGuess.charAt(i)) {
+                gameBoard.getArray()[i][count].setStyle("-fx-background-color: chartreuse; -fx-border-color: #000000");
+            } else if (word.contains(userGuess.subSequence(i, i + 1))) {
+                gameBoard.getArray()[i][count].setStyle("-fx-background-color: goldenrod; -fx-border-color: #000000");
+            } else {
+                gameBoard.getArray()[i][count].setStyle("-fx-background-color: lightgray; -fx-border-color: #000000");
+            }
+        }
+        count += 1;
     }
+
 
     
     public void play() {
@@ -144,10 +159,51 @@ private Text labelWins;
         hbox.setAlignment(Pos.CENTER);
         hbox.getChildren().addAll(gameBoard);
         StackPane sp = new StackPane();
-        sp.getChildren().addAll(hbox, getButtonMenu());
+        word = new Word().word;
+        word = word.toUpperCase();
+        System.out.println(word);
+         Image img = new Image("background.jpeg");
+        ImageView bg = new ImageView(img);
+        bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
+        bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
+        sp.getChildren().addAll(bg, hbox, getButtonMenu());
         Scene scene = new Scene(sp, 550, 610);
+        
         gameStage.setScene(scene);
         gameStage.show();
+        
+
+        
+        EventHandler<KeyEvent> userinput = (KeyEvent e) -> {
+             String input = e.getCode().toString();
+                if (e.getCode() == KeyCode.ENTER) {
+                        checkAnswer();
+                        if (userGuess.equalsIgnoreCase(word)) {
+                            display("Win", "You got the word in " + count + " tries");
+                            wins++;
+                            labelWins.setText("Win Counter: " + wins);
+                        }
+                        userGuess = "";
+                        if (count >= 6) {
+                            display("Fail", "The word was " + word);
+                            restart();
+                        }
+                } else if (e.getCode() == KeyCode.BACK_SPACE) {
+                    if (userGuess.length() > 0) {
+                        gameBoard.getArray()[userGuess.length() - 1][count].setText("");
+                        userGuess = userGuess.substring(0, userGuess.length() - 1);
+                    }
+                } else if (userGuess.length() < 5 && input.length() == 1) {
+                    if (!Character.isDigit(input.charAt(0)) && !input.equals("")) {
+                        userGuess = userGuess + input;
+                        gameBoard.getArray()[userGuess.length() - 1][count].setText(input);
+                    }
+                } else if (userGuess.length() == 5 && input.length() == 1) {
+                    Alert a = new Alert(Alert.AlertType.ERROR, "This input is not allowed!");
+                    a.show();
+                }
+            };
+        scene.setOnKeyPressed(userinput);
 
     }
     
@@ -155,6 +211,18 @@ private Text labelWins;
         gameStage.close();
         return wins;
     }
+    
+    public void restart() {
+        gameBoard.reset();
+        word = new Word().word;
+        word = word.toUpperCase();
+        System.out.println(word);
+        count = 0;
+        userGuess = "";
+        
+    }
+    
+    
 }
 
 

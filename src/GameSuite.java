@@ -175,7 +175,7 @@ Wordle two = new Wordle();
         
         Thread t2 = new Thread(() -> {
 		   while(true) {
-         totalWins = one.wins;
+         totalWins = one.wins + two.wins;
 		   winCount.setText("Win Counter: " + totalWins);
          //System.out.println("Wins");
 		}
