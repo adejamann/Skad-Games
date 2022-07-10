@@ -30,7 +30,7 @@ import javafx.scene.control.Alert;
 import java.util.Random;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
-
+import javafx.scene.text.TextAlignment;
 
 public class Wordle implements Game {
 
@@ -84,28 +84,18 @@ public class Wordle implements Game {
         });
         Button exit = new Button("Exit");
         exit.setOnAction((ActionEvent e) -> {
+            restart();
             quit();
             
         });
-        Button enter = new Button("Enter");
-        enter.setOnAction((ActionEvent e) -> {
-            guess();
-            if (start.equalsIgnoreCase(guess)) {
-                display("Wonderful!", "Great job! You got the word in " + counter + " attempts!");
-                restart();
-            }
-            start = "";
-            if (counter >= 6) {
-                display("Failed", "Unfortunately, you ran out of guesses :(\nBetter luck next time!");
-                restart();
-            }
-        });
+        
         labelWins = new Text("Win Counter: " + wins);
+        labelWins.setTextAlignment(TextAlignment.CENTER);
 
         
         HBox options = new HBox(10);
         options.setSpacing(5);
-        options.getChildren().addAll(rules, restart, exit, labelWins);
+        options.getChildren().addAll(rules, reset, exit, labelWins);
         options.setPadding(new Insets(0, 10, 0, 10));
         options.setAlignment(Pos.TOP_CENTER);
         
@@ -141,19 +131,6 @@ public class Wordle implements Game {
         Scene s = new Scene(lay);
         insWindow.setScene(s);
         insWindow.showAndWait();
-    }
-    
-    public void guess() {
-        for (int i = 0; i < 5; i++) {
-            if (attempt.charAt(i) == start.charAt(i)) {
-                letterArr[i][counter].setStyle("-fx-background-color: chartreuse; -fx-border-color: #000000");
-            } else if (attempt.contains(start.subSequence(i, i+1))) {
-                letterArr[i][counter].setStyle("-fx-background-color: goldenrod; -fx-border-color: #000000");
-            } else {
-                letterArr[i][counter].setStyle("-fx-background-color: lightgray; -fx-border-color: #000000");
-            }
-        }
-        counter++;
     }
 
     /**
@@ -230,23 +207,10 @@ public class Wordle implements Game {
         scene.setOnKeyPressed(userinput);
 
     }
-
-    public void guess() {
-        for (int i = 0; i < 5; i++) {
-            if (attempt.charAt(i) == start.charAt(i)) {
-                letterArr[i][counter].setStyle("-fx-background-color: chartreuse; -fx-border-color: #000000");
-            } else if (attempt.contains(start.subSequence(i, i+1))) {
-                letterArr[i][counter].setStyle("-fx-background-color: goldenrod; -fx-border-color: #000000");
-            } else {
-                letterArr[i][counter].setStyle("-fx-background-color: lightgray; -fx-border-color: #000000");
-            }
-        }
-        counter++;
-    }
     
     public int quit() {
         gameStage.close();
-        return counter;
+        return wins;
     }
     
     public void restart() {

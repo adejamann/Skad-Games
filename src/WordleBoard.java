@@ -64,7 +64,7 @@ for (int i = 0; i < 5; i++) {
 
 
 public Button[][] getArray() {
-   return letters.clone();
+   return letters;
 }
 
 public void reset() {

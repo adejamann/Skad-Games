@@ -93,7 +93,6 @@ Wordle two = new Wordle();
         sq3.setFill(new ImagePattern(display3));
         
         StackPane sq1stack = new StackPane();
-        
         //setting up game1 (tictactoe)
         Button game1 = new Button();
         game1.setText("PLAY!");
