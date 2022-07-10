@@ -78,7 +78,7 @@ public class Wordle implements Game {
 				       + "5. Try to Guess the word as early as possible to brag to your friends"
 				       + "!"));
         rules.setAlignment(Pos.CENTER); 
-        Button reset = new Button("Reset");
+        Button reset = new Button("Restart");
         reset.setOnAction((ActionEvent e) -> {
             restart();
         });
@@ -182,6 +182,7 @@ public class Wordle implements Game {
                             display("Win", "You got the word in " + count + " tries");
                             wins++;
                             labelWins.setText("Win Counter: " + wins);
+                            restart();
                         }
                         userGuess = "";
                         if (count >= 6) {
