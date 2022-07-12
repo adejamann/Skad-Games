@@ -143,15 +143,29 @@ Wordle two = new Wordle();
         StackPane homepage = new StackPane();
         homepage.getChildren().add(home);
         TabPane tabs = new TabPane();
+        
+        //tab with team information
         Tab information = new Tab("Team Information");
         information.setClosable(false);
         information.setContent(info);
+        
+        //tab with games
         Tab games = new Tab("Games");
         games.setClosable(false);
         games.setContent(homepage);
         
+        //tab with leader board
+        Tab leader = new Tab("LeaderBoard");
+        leader.setClosable(false);
+        
+        //tab with User profile
+        Tab profile = new Tab("Profile");
+        profile.setClosable(false);
+        
         tabs.getTabs().add(information);
         tabs.getTabs().add(games);
+        tabs.getTabs().add(leader);
+        tabs.getTabs().add(profile);
         Tab selectedTab = tabs.getSelectionModel().getSelectedItem();
         
 
