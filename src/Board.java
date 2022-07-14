@@ -5,8 +5,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.*;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Circle;
+import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 import javafx.scene.image.Image;
@@ -46,6 +45,7 @@ super();
 this.setHgap(10);
 this.setVgap(10);
 this.setPadding(new Insets(0, 10, 0, 10));
+this.setAlignment(Pos.CENTER); 
 initialize();
 }
 
@@ -123,10 +123,15 @@ public int hasWon() {
       return 2;
    } else if (tiles[6].getUserData().equals("O") && tiles[4].getUserData().equals("O") && tiles[2].getUserData().equals("O")) {
       return 2;
-   } else if (moves >= 5) {
-      return 0;
+   } else {
+      for (int i = 0; i < 9; i++) {
+        if (tiles[i].getUserData().equals("X") || tiles[i].getUserData().equals("O")) {
+        return -1;
+        }
+        }
+
    }
-   return -1;
+   return 0;
 }
 
 /**
@@ -176,8 +181,14 @@ public void playerOne() {
 
                 if (hasWon() == 1) {
                     wins++;
+                    display("", "You Won!");
+                } else if (hasWon() == 2) {
+                    display("", "You Lost!");
+                } else if (hasWon() == 2) {
+                    display("", "Tie!");
                 }
-            }
+             }
+            
         });
     }
 }
@@ -203,6 +214,29 @@ for (int i = 0; i < 9; i++) {
    });
 }
 }
+
+/**
+     * @param t - this is a String representing the title of the window
+     * @param m - this is a String representing the message that will show in the
+     *          window
+     */
+    void display(String t, String m) {
+        Stage insWindow = new Stage();
+        insWindow.initModality(Modality.APPLICATION_MODAL);
+        insWindow.setTitle(t);
+        insWindow.setMinWidth(300);
+        Label l1 = new Label();
+        l1.setText(m);
+        Button exit = new Button("Exit");
+        exit.setOnAction(e -> insWindow.close());
+        VBox lay = new VBox(10);
+        lay.getChildren().addAll(l1, exit);
+        lay.setAlignment(Pos.CENTER);
+        Scene s = new Scene(lay);
+        insWindow.setScene(s);
+        insWindow.showAndWait();
+    }
+
 
 private void endGame() {
 }
