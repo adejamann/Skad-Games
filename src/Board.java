@@ -125,8 +125,8 @@ public int hasWon() {
       return 2;
    } else {
       for (int i = 0; i < 9; i++) {
-        if (tiles[i].getUserData().equals("X") || tiles[i].getUserData().equals("O")) {
-        return -1;
+        if (tiles[i].getUserData().equals("empty")) {
+            return -1;
         }
         }
 
@@ -184,7 +184,7 @@ public void playerOne() {
                     display("", "You Won!");
                 } else if (hasWon() == 2) {
                     display("", "You Lost!");
-                } else if (hasWon() == 2) {
+                } else if (hasWon() == 0) {
                     display("", "Tie!");
                 }
              }
