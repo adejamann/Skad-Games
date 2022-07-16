@@ -31,10 +31,39 @@ import javafx.stage.Modality;
 public class BlackJack implements Game {
       //total wins for the game
       int wins = 0;
-      
+      private Stage gameStage;
+
       public BlackJack() {
+         gameStage = new Stage();
+         gameStage.setTitle("BlackJack");
          initialize();
+
       }
+      
+      /**
+     * returns the stage to display the actual game in gamesuite
+     */
+    public Stage getStage() {
+        return gameStage;
+    }
+    
+    public void restart() {
+    }
+    
+    public int quit() {
+     return -1;
+    }
+    
+    public void play() {
+    Button temp2 = new Button();
+    Card test = new Card(Card.cardSuit.CLUBS, Card.cardRank.TWO);
+      VBox temp = new VBox(test, temp2); // delete this later. Only for testing
+      Scene scene = new Scene(temp);
+      gameStage.setScene(scene);
+      gameStage.show();
+
+    }
+
       
       private void initialize() {
       // creating the button for the instructions  

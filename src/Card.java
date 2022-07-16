@@ -5,14 +5,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 //Creates a card class that will display the rank and suit of the card
-public class Card extends Parent {
+public class Card extends StackPane {
 
 //Enum for the card Rank
 public final cardRank rank;
 public final cardSuit suit;
 public final int cardValue;
 
-enum cardRank {
+public enum cardRank {
    ACE(1), TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8), NINE(9),
    TEN(10), JACK(10), QUEEN(10), KING(10);
    
@@ -23,7 +23,7 @@ enum cardRank {
 }
 
 //Enum for the card Suit
-enum cardSuit {
+public enum cardSuit {
    DIAMONDS, SPADES, HEARTS, CLUBS
 };
 
@@ -39,8 +39,7 @@ public Card(cardSuit suit, cardRank rank) {
    Rectangle cardbg = new Rectangle(50, 80);
    cardbg.setFill(Color.WHITE);
    
-   StackPane card = new StackPane();
-   card.getChildren().addAll(cardbg, label);
+      this.getChildren().addAll(cardbg, label);
    
 }
 
