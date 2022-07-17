@@ -25,6 +25,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
+import javafx.scene.text.FontPosture;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.geometry.Insets;
 
 
 
@@ -32,6 +37,12 @@ public class BlackJack implements Game {
       //total wins for the game
       int wins = 0;
       private Stage gameStage;
+      private HBox options;
+    private Button exit;
+    private Button restart;
+    private Text label;
+    private BorderPane bp;
+
 
       public BlackJack() {
          gameStage = new Stage();
@@ -51,14 +62,21 @@ public class BlackJack implements Game {
     }
     
     public int quit() {
-     return -1;
+     gameStage.close();
+     return wins;
+
     }
     
     public void play() {
-    Button temp2 = new Button();
-    Card test = new Card(Card.cardSuit.CLUBS, Card.cardRank.TWO);
-      VBox temp = new VBox(test, temp2); // delete this later. Only for testing
-      Scene scene = new Scene(temp);
+      Card test = new Card(Card.cardSuit.CLUBS, Card.cardRank.TWO);
+      VBox temp = new VBox(test); // delete this later. Only for testing
+      bp.setCenter(temp);
+      BackgroundFill background_fill = new BackgroundFill(Color.GREEN, 
+                                          CornerRadii.EMPTY, Insets.EMPTY);
+  
+            Background background = new Background(background_fill);
+      bp.setBackground(background);
+      Scene scene = new Scene(bp);
       gameStage.setScene(scene);
       gameStage.show();
 
@@ -83,6 +101,48 @@ public class BlackJack implements Game {
                         + "9. A perfect hand combines an ace with a 10 (Jack, Queen, or King) and is known an a 'Blackjack'. \n"
                         ));
       rules.setAlignment(Pos.CENTER);
+      
+       options = new HBox();
+       options.setAlignment(Pos.CENTER); 
+     
+       restart = new Button();
+        exit = new Button();
+        Font font = Font.font("Verdana", FontWeight.BOLD, FontPosture.ITALIC, 35);
+        label = new Text("Win Counter: " + wins);
+        label.setFont(font);
+        
+        exit.setText("Exit");
+        restart.setText("Restart");
+        
+        EventHandler<ActionEvent> restartHandler = (ActionEvent ae) -> {
+            restart();
+	};
+        //fixing the functionality of the exit and restart tabs
+        EventHandler<ActionEvent> exitHandler = (ActionEvent ae) -> {
+            quit();
+	     };
+
+
+        restart.setOnAction(restartHandler);
+        exit.setOnAction(exitHandler);
+        HBox game = new HBox();
+        game.getChildren().addAll(rules, restart, exit);
+        
+        HBox gameButtons = new HBox();
+        
+        Button hit = new Button();
+        Button stand = new Button();
+        hit.setText("Hit");
+        stand.setText("Stand");
+        
+        gameButtons.getChildren().addAll(hit, stand);
+
+        
+        options.getChildren().addAll(game, gameButtons);
+        bp = new BorderPane();
+        bp.setTop(options);
+        
+
       }
       
       
