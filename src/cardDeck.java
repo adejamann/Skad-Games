@@ -16,4 +16,8 @@ public class cardDeck {
    public cardDeck () {
       cardInfo();
    }
+   
+   public Card[] getDeck() {
+      return card;
+   }
 }
