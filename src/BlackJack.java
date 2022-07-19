@@ -33,6 +33,7 @@ import javafx.geometry.Insets;
 
 
 
+
 public class BlackJack implements Game {
       //total wins for the game
       int wins = 0;
@@ -68,23 +69,11 @@ public class BlackJack implements Game {
     }
     
     public void play() {
-      Card test = new Card(Card.cardSuit.CLUBS, Card.cardRank.TWO);
-      Card test2 = new Card(Card.cardSuit.HEARTS, Card.cardRank.FIVE);
-      HBox temp = new HBox(test, test2); // delete this later. Only for testing
-      temp.setAlignment(Pos.CENTER);
-      temp.setPadding(new Insets(10, 50, 50, 50));
-      Card test3 = new Card(Card.cardSuit.CLUBS, Card.cardRank.TWO);
-      Card test4 = new Card(Card.cardSuit.HEARTS, Card.cardRank.FIVE);
-      HBox temp2 = new HBox(test3, test4);
-      temp2.setAlignment(Pos.CENTER);
-      VBox box = new VBox(temp, temp2);
-      box.setAlignment(Pos.CENTER);
       bp = initialize();
       bp.setCenter(box);
       BackgroundFill background_fill = new BackgroundFill(Color.GREEN, 
                                           CornerRadii.EMPTY, Insets.EMPTY);
-  
-            Background background = new Background(background_fill);
+      Background background = new Background(background_fill);
       bp.setBackground(background);
       Scene scene = new Scene(bp, 550, 610);
       gameStage.setScene(scene);
