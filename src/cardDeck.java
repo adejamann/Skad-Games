@@ -6,10 +6,14 @@ public class cardDeck {
    //Assigns the card to its suit and rank
    public final void cardInfo() {
       int cardIndex = 0;
-      for (cardSuit suit : cardSuit.values()) {
-         for (cardRank rank : cardRank.values()) {
+      for (Card.cardSuit suit : Card.cardSuit.values()) {
+         for (Card.cardRank rank : Card.cardRank.values()) {
             card[cardIndex++] = new Card(suit, rank);
             }
        }
+   }
+   
+   public cardDeck () {
+      cardInfo();
    }
 }
