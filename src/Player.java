@@ -26,6 +26,6 @@ public int returnValue() {
 }
 
 public void reset() {
-hand.clear();
+   hand.clear();
 }
 }

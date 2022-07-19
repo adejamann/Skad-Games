@@ -38,6 +38,7 @@ int totalWins = 0;
 
 TicTacToe one = new TicTacToe();
 Wordle two = new Wordle();
+BlackJack three = new BlackJack();
     /**
      * Creates a main method.
      * @param args String
@@ -117,6 +118,13 @@ Wordle two = new Wordle();
         
         Button game3 = new Button();
         game3.setText("PLAY!");
+        
+        EventHandler<ActionEvent> launchGameThree = (ActionEvent ae) -> {
+        three.play();
+        };         
+       game3.setOnAction(launchGameThree);
+
+        
         GridPane grid = new GridPane();
         grid.add(sq1, 0, 0, 1, 1);
         grid.add(sq2, 1, 0, 1, 1);
