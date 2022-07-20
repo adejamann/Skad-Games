@@ -22,19 +22,6 @@ public class Dealer {
       }
    }
    
-   // takes in the card to remove and returns the removed card
-   // the card is no longer in the hand of the dealer
-   public Card removeHand(Card c) {
-      Card c = hand.remove(hand.indexOf(c));
-      return c;
-   }
-   
-   // removes from the deck
-   // the card should no longer be in the deck anymore
-   public Card removeDeck(Card c) {
-      Card c = deck.remove(deck.indexOf(c)); 
-      return c; 
-   }
-   
+      
    
 }
