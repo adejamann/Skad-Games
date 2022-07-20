@@ -22,6 +22,12 @@ public class Dealer {
       }
    }
    
+   // takes in the card to remove and returns the removed card
+   // the card is no longer in the hand of the dealer
+   public Card removeHand(Card c) {
+      Card c = hand.remove(hand.indexOf(c));
+      return c;
+   }
       
    
 }
