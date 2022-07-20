@@ -8,17 +8,17 @@ public class cardDeck {
       int cardIndex = 0;
       for (Card.cardSuit suit : Card.cardSuit.values()) {
          for (Card.cardRank rank : Card.cardRank.values()) {
-            cards[cardIndex++] = new Card(suit, rank);
+            card[cardIndex++] = new Card(suit, rank);
             }
        }
    }
-   /*public Card draw() {
-      Card card = null;
-      while(card == null) {
-         int i = (int)(Math.random()*cards.length);
-         card = cards[i];
-         cards[i] = null;
-       }
-       return card;
-   }*/
+   
+   public cardDeck () {
+      cardInfo();
+   }
+   
+   public Card[] getDeck() {
+      return card;
+   }
+
 }

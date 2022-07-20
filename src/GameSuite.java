@@ -35,6 +35,10 @@ import javafx.scene.layout.VBox;
 public class GameSuite extends Application {
 
 int totalWins = 0;
+String userName = "Player";
+String content = "";
+Text leaderContent;
+LeaderBoard lb = new LeaderBoard();
 
 TicTacToe one = new TicTacToe();
 Wordle two = new Wordle();
@@ -164,6 +168,34 @@ BlackJack three = new BlackJack();
         
         //tab with leader board
         Tab leader = new Tab("LeaderBoard");
+        BorderPane leaderRoot = new BorderPane();
+        lb.read();
+        for (LeaderBoard.Player p: lb.leaderboard) {
+         content = content + p.getName() + ": " + p.getScore() + "\n";
+        }
+        leaderContent = new Text(content);
+        leaderContent.setFont(Font.font("Comic Sans MS", 20));
+        Button update = new Button ("Update LeaderBoard");
+         EventHandler<ActionEvent> leaderUpdate = (ActionEvent ae) -> {
+            lb.insert(userName, totalWins);
+            lb.update();
+            lb.clear();
+            lb.read();
+            content = "";
+           for (int i = 0; i < 10; i++) {
+           LeaderBoard.Player p = lb.leaderboard.get(i);
+          content = content + p.getName() + ": " + p.getScore() + "\n";
+         }
+         leaderContent.setText(content);
+         System.out.println("Done");
+        };         
+       update.setOnAction(leaderUpdate);
+
+        update.setAlignment(Pos.CENTER);
+        leaderRoot.setTop(update);
+        leaderRoot.setCenter(leaderContent);
+        //leaderRoot.getChildren().addAll(update, leaderContent);
+        leader.setContent(leaderRoot);
         leader.setClosable(false);
         
         //tab with User profile
