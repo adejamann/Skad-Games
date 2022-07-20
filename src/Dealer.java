@@ -12,6 +12,16 @@ public class Dealer {
       hand.add(c);
    }
    
+   /*
+   * takes an arraylist of cards and adds it back to the deck 
+   */
+   public void addDeck(ArrayList<Card> a) {
+      for (int i = 0; i < a.size(); i++) {
+         Card c = a.remove(i);
+         deck.add(c);
+      }
+   }
+   
       
    
 }
