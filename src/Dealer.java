@@ -28,6 +28,13 @@ public class Dealer {
       Card c = hand.remove(hand.indexOf(c));
       return c;
    }
+   
+   // removes from the deck
+   // the card should no longer be in the deck anymore
+   public Card removeDeck(Card c) {
+      Card c = deck.remove(deck.indexOf(c)); 
+      return c; 
+   }
       
    
 }
