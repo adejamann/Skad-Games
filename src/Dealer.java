@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.*;
 
+
 public class Dealer {
    // will have a hand and the deck
    private ArrayList<Card> hand = new ArrayList<>();
    private ArrayList<Card> deck = new ArrayList<>(); 
    
+
    public Dealer() {
    cardDeck d = new cardDeck();
       for (int i = 0; i < 52; i++ ) {
@@ -34,6 +36,7 @@ public class Dealer {
    // the card is no longer in the hand of the dealer
    public Card removeHand(Card a) {
        Card c = hand.remove(hand.indexOf(a));
+
       return c;
    }
    
@@ -53,8 +56,5 @@ public int returnValue() {
    handValue+= hand.get(i).cardValue;
    }
    return handValue;
-}
-
-   
-   
+}   
 }
