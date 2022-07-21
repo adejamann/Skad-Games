@@ -46,6 +46,9 @@ public class BlackJack implements Game {
     private Player p;
     private HBox dealer;
     private HBox player;
+    private Text playerScore;
+    private Text dealerScore;
+
 
 
     public BlackJack() {
@@ -74,7 +77,9 @@ public class BlackJack implements Game {
     }
     
     public void play() {
+    
 	Card oneD = d.deal();
+   int i = oneD.cardValue;
 	d.addHand(oneD);
 	Card twoD = d.deal();   
 	d.addHand(twoD);   
@@ -87,7 +92,9 @@ public class BlackJack implements Game {
 	p.addHand(twoP);        
 	player = new HBox(oneP, twoP);
 	player.setAlignment(Pos.CENTER);
-	VBox box = new VBox(dealer, player);
+   playerScore = new Text(d.returnValue() + "");
+   dealerScore = new Text(i + "");
+	VBox box = new VBox(dealerScore, dealer, player, playerScore);
 	box.setAlignment(Pos.CENTER);
 	bp = initialize();
 	bp.setCenter(box);
@@ -127,8 +134,9 @@ public class BlackJack implements Game {
      
 	restart = new Button();
         exit = new Button();
-        Font font = Font.font("Verdana", FontWeight.BOLD, FontPosture.ITALIC, 35);
+        Font font = Font.font("Verdana", FontWeight.BOLD, FontPosture.ITALIC, 25);
         label = new Text("Win Counter: " + wins);
+        
         label.setFont(font);
         
         exit.setText("Exit");
@@ -146,7 +154,7 @@ public class BlackJack implements Game {
         restart.setOnAction(restartHandler);
         exit.setOnAction(exitHandler);
         HBox game = new HBox();
-        game.getChildren().addAll(rules, restart, exit);
+        game.getChildren().addAll(rules, restart, exit, label);
         
         HBox gameButtons = new HBox();
         
