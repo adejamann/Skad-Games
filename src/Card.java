@@ -79,8 +79,8 @@ public Card(cardSuit suit, cardRank rank) {
    this.cardValue = rank.cardValue;
    
    Rectangle playingcard = new Rectangle(80, 110);
-   if (cardSuit.DIAMONDS.ordinal() == 0) {
-      if (cardRank.ACE.ordinal() == 0) {
+   if (suit == cardSuit.DIAMONDS) {
+      if (rank == cardRank.ACE) {
          Image d1 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Playing_card_diamond_A.svg/200px-Playing_card_diamond_A.svg.png?20070326033900");
          playingcard.setFill(new ImagePattern(d1));
        } else if (cardRank.TWO.ordinal() == 1) {
@@ -244,6 +244,8 @@ public Card(cardSuit suit, cardRank rank) {
             playingcard.setFill(new ImagePattern(ck));
        }
    }
+
+   this.getChildren().addAll(playingcard);
  } 
 }   
    
