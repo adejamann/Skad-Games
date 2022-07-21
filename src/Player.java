@@ -9,7 +9,7 @@ public void bet (int bet) {
    sum = bet - sum;
 }
 
-public void add(Card c) {
+public void addHand (Card c) {
    hand.add(c);
 }
 
