@@ -1,4 +1,3 @@
-
 //Class for the card Deck
 public class cardDeck {
    private Card[] cards = new Card[52];
