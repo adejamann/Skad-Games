@@ -56,5 +56,19 @@ public int returnValue() {
    handValue+= hand.get(i).cardValue;
    }
    return handValue;
-}   
+}
+
+public void resetDeck() {
+   deck.clear();
+   cardDeck d = new cardDeck();
+      for (int i = 0; i < 52; i++ ) {
+            deck.add(d.getDeck()[i]);
+      }
+     Collections.shuffle(deck);
+} 
+
+public void reset() {
+   hand.clear();
+   resetDeck();
+}  
 }

@@ -70,9 +70,32 @@ public class BlackJack implements Game {
     }
     
     public void restart() {
+         d.reset();
+         p.reset();
+         play();
+         //player.getChildren().clear();
+         //dealer.getChildren().clear();
+         /*
+         Card oneD = d.deal();
+	      d.addHand(oneD);
+         label1.setText("Dealer's Hand: " + d.returnValue()); 
+	      twoD = d.deal(); 
+         twoD.hide();  
+	      d.addHand(twoD);
+         dealer.getChildren().addAll(oneD, twoD);
+         
+         Card oneP = d.deal();
+	      p.addHand(oneP);
+	      Card twoP = d.deal();   
+	      p.addHand(twoP); 
+         label2.setText("Player's Hand: " + p.returnValue());
+         player.getChildren().addAll(oneP, twoP);
+         */
     }
     
     public int quit() {
+    d.reset();
+         p.reset();
 	gameStage.close();
 	return wins;
 
@@ -164,7 +187,7 @@ public class BlackJack implements Game {
         restart.setOnAction(restartHandler);
         exit.setOnAction(exitHandler);
         HBox game = new HBox();
-        game.getChildren().addAll(rules, restart, exit);
+        game.getChildren().addAll(rules, label, restart, exit);
         
         HBox gameButtons = new HBox();
         
@@ -176,50 +199,54 @@ public class BlackJack implements Game {
             label2.setText("Players's Hand: " + p.returnValue()); 
             if (p.returnValue() > 21) {
 		display("", "You lose");
+      restart();
             }
+            
 	};
         hit.setOnAction(hitHandler);
         Button stand = new Button();
         EventHandler<ActionEvent> standHandler = (ActionEvent ae) -> {
         twoD.show();
         label1.setText("Dealer's Hand: " + d.returnValue());
-        Runnable task = () -> {
-            
+        Runnable task = () -> {   
               while (d.returnValue() < 17) {
-		Card c = d.deal();
-		d.addHand(c);
-      Platform.runLater(() -> {
-         label1.setText("Dealer's Hand: " + d.returnValue());        
-		   dealer.getChildren().addAll(c);
+		            Card c = d.deal();
+		            d.addHand(c);
+                  Platform.runLater(() -> {
+                    label1.setText("Dealer's Hand: " + d.returnValue());        
+		               dealer.getChildren().addAll(c);
             });
-          try
-		    {
-			Thread.sleep(1000);   
-		    }
-		catch(InterruptedException e)
-		    {
-			e.printStackTrace();
-		    } 
-         }
-         Platform.runLater(() -> {            
-          if (d.returnValue() > 21) {
-		display("", "You Win");
-            } else if (d.returnValue() > p.returnValue()) {
-		display("", "You Lose");
-            } else if  (d.returnValue() < p.returnValue()) {
-		display("", "You Win");
-            } else {
-		display("", "Draw");
-            }
+                   try
+         		    {
+         			Thread.sleep(800);   
+         		    }
+         		catch(InterruptedException e)
+         		    {
+         			e.printStackTrace();
+         		    } 
+                  }
+               Platform.runLater(() -> {            
+                if (d.returnValue() > 21) {
+      		display("", "You Win");
+            wins++;
+             label.setText("Win Counter: " + wins);
+                  } else if (d.returnValue() > p.returnValue()) {
+      		display("", "You Lose");
+                  } else if  (d.returnValue() < p.returnValue()) {
+      		display("", "You Win");
+               wins++;
+             label.setText("Win Counter: " + wins);
+                  } else {
+      		display("", "Draw");
+                  }
+                  restart();
                            
         });
         };
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
-                          
-           
-            
+                    
 	};
         stand.setOnAction(standHandler);
         hit.setText("Hit");
