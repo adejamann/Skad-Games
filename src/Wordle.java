@@ -90,6 +90,8 @@ public class Wordle implements Game {
         });
         
         labelWins = new Text("Win Counter: " + wins);
+        labelWins.setFont(Font.font("Comic Sans MS", 20));
+        labelWins.setFill(Color.BLACK);
         labelWins.setTextAlignment(TextAlignment.CENTER);
 
         
@@ -162,7 +164,7 @@ public class Wordle implements Game {
         word = new Word().word;
         word = word.toUpperCase();
         System.out.println(word);
-        Image img = new Image("background.jpeg");
+        Image img = new Image("https://img.freepik.com/premium-photo/pink-purple-blue-pastel-ombre-digital-paper-watercolor-gradient-watercolour-background-texture_199112-214.jpg?w=360");
         ImageView bg = new ImageView(img);
         bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
         bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
