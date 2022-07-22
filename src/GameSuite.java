@@ -229,7 +229,7 @@ BlackJack three = new BlackJack();
         
         Thread t2 = new Thread(() -> {
 		   while(true) {
-         totalWins = one.wins + two.wins;
+         totalWins = one.wins + two.wins + three.wins;
 		   winCount.setText("Win Counter: " + totalWins);
          //System.out.println("Wins");
 		}

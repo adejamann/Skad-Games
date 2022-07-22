@@ -65,7 +65,10 @@ public class Wordle implements Game {
     BorderPane getButtonMenu() {
         Button input = new Button("Enter");
         input.setOnAction((ActionEvent e) -> {
-            checkAnswer();
+            if (userGuess.length() < 5) {
+                     display("", "Words must be 5 characters or longer");
+                  } else {
+                        checkAnswer();
                         if (userGuess.equalsIgnoreCase(word)) {
                             display("Win", "You got the word in " + count + " tries");
                             wins++;
@@ -77,6 +80,7 @@ public class Wordle implements Game {
                             display("Fail", "The word was " + word);
                             restart();
                         }
+                 }
 
         });
 
@@ -123,7 +127,9 @@ public class Wordle implements Game {
        
         BorderPane root = new BorderPane();
         root.setTop(title);
-        root.setBottom(input);
+        HBox inputH = new HBox(input);
+        inputH.setAlignment(Pos.TOP_CENTER);
+        root.setBottom(inputH);
         return root;
     }
 
@@ -194,6 +200,9 @@ public class Wordle implements Game {
         EventHandler<KeyEvent> userinput = (KeyEvent e) -> {
              String input = e.getCode().toString();
                 if (e.getCode() == KeyCode.ENTER) {
+                  if (userGuess.length() < 5) {
+                     display("Error", "Words must be 5 characters or longer");
+                  } else {
                         checkAnswer();
                         if (userGuess.equalsIgnoreCase(word)) {
                             display("Win", "You got the word in " + count + " tries");
@@ -206,6 +215,7 @@ public class Wordle implements Game {
                             display("Fail", "The word was " + word);
                             restart();
                         }
+                 }
                 } else if (e.getCode() == KeyCode.BACK_SPACE) {
                     if (userGuess.length() > 0) {
                         gameBoard.getArray()[userGuess.length() - 1][count].setText("");
