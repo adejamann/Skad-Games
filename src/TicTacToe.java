@@ -25,6 +25,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
+import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
 
 
@@ -66,14 +67,21 @@ public class TicTacToe implements Game{
         restart.setText("Restart");
 
         options.getChildren().addAll(rules, restart, exit, label);
+        options.setPadding(new Insets(0, 10, 0, 10));
         root.getChildren().addAll(options, gameBoard);
         center.setCenter(root);
         center.setTop(new Text(""));
-        StackPane temp = new StackPane(center);
-        gameScene = new Scene(temp);
+        Image tttimg = new Image("https://i.pinimg.com/564x/03/0b/b8/030bb86f8dd672d39b693cd94bfd1f4a.jpg");
+        ImageView tttbg = new ImageView(tttimg);
+        tttbg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
+        tttbg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
+        StackPane temp = new StackPane(tttbg, center);
+        gameScene = new Scene(temp, 600, 600);
         gameStage.setScene(gameScene);
         gameStage.setTitle("Tic-Tac-Toe");
         gameStage.sizeToScene();
+        
+
 
        
         // need to make the rules open up in a new window
