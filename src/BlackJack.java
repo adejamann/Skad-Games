@@ -30,6 +30,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.geometry.Insets;
+import javafx.application.Platform;
 
 
 
@@ -49,6 +50,7 @@ public class BlackJack implements Game {
     private HBox player;
     Text label1;
     Text label2;
+    Card twoD;
 
 
     public BlackJack() {
@@ -68,9 +70,32 @@ public class BlackJack implements Game {
     }
     
     public void restart() {
+         d.reset();
+         p.reset();
+         play();
+         //player.getChildren().clear();
+         //dealer.getChildren().clear();
+         /*
+         Card oneD = d.deal();
+	      d.addHand(oneD);
+         label1.setText("Dealer's Hand: " + d.returnValue()); 
+	      twoD = d.deal(); 
+         twoD.hide();  
+	      d.addHand(twoD);
+         dealer.getChildren().addAll(oneD, twoD);
+         
+         Card oneP = d.deal();
+	      p.addHand(oneP);
+	      Card twoP = d.deal();   
+	      p.addHand(twoP); 
+         label2.setText("Player's Hand: " + p.returnValue());
+         player.getChildren().addAll(oneP, twoP);
+         */
     }
     
     public int quit() {
+    d.reset();
+         p.reset();
 	gameStage.close();
 	return wins;
 
@@ -79,11 +104,12 @@ public class BlackJack implements Game {
     public void play() {
 	Card oneD = d.deal();
 	d.addHand(oneD);
-   label = new Text("Dealer's Hand: " + d.returnValue()); 
-	Card twoD = d.deal();   
+   label1 = new Text("Dealer's Hand: " + d.returnValue()); 
+	twoD = d.deal(); 
+   twoD.hide();  
 	d.addHand(twoD);
-   label.setFont(Font.font("Comic Sans MS", 35));
-   label.setFill(Color.WHITE);  
+   label1.setFont(Font.font("Comic Sans MS", 35));
+   label1.setFill(Color.WHITE);  
 	dealer = new HBox(oneD, twoD);       
 	dealer.setAlignment(Pos.CENTER);
 	dealer.setPadding(new Insets(10, 50, 50, 50));
@@ -91,9 +117,9 @@ public class BlackJack implements Game {
 	p.addHand(oneP);
 	Card twoP = d.deal();   
 	p.addHand(twoP); 
-   label1 = new Text("Player's Hand: " + p.returnValue());
-   label1.setFont(Font.font("Comic Sans MS", 35));
-   label1.setFill(Color.WHITE);       
+   label2 = new Text("Player's Hand: " + p.returnValue());
+   label2.setFont(Font.font("Comic Sans MS", 35));
+   label2.setFill(Color.WHITE);       
 	player = new HBox(oneP, twoP);
 	player.setAlignment(Pos.CENTER);
    System.out.println("suit: " + oneD.suit + " rank: " + oneD.rank);
@@ -102,7 +128,7 @@ public class BlackJack implements Game {
    System.out.println("suit: " + twoP.suit + " rank: " + twoP.rank);
 
 
-	VBox box = new VBox(label, dealer, label1, player);
+	VBox box = new VBox(label1, dealer, label2, player);
 	box.setAlignment(Pos.CENTER);
 	bp = initialize();
 	bp.setCenter(box);
@@ -161,7 +187,7 @@ public class BlackJack implements Game {
         restart.setOnAction(restartHandler);
         exit.setOnAction(exitHandler);
         HBox game = new HBox();
-        game.getChildren().addAll(rules, restart, exit);
+        game.getChildren().addAll(rules, label, restart, exit);
         
         HBox gameButtons = new HBox();
         
@@ -170,40 +196,57 @@ public class BlackJack implements Game {
             Card c = d.deal();
             p.addHand(c);
             player.getChildren().addAll(c);
-            label1.setText("Players's Hand: " + p.returnValue()); 
+            label2.setText("Players's Hand: " + p.returnValue()); 
             if (p.returnValue() > 21) {
 		display("", "You lose");
+      restart();
             }
+            
 	};
         hit.setOnAction(hitHandler);
         Button stand = new Button();
         EventHandler<ActionEvent> standHandler = (ActionEvent ae) -> {
-            while (d.returnValue() < 17) {
-		Card c = d.deal();
-		d.addHand(c);       
-		dealer.getChildren().addAll(c);
-      label.setText("Dealer's Hand: " + d.returnValue()); 
-		try
-		    {
-         
-			Thread.sleep(500);   
-		    }
-		catch(InterruptedException e)
-		    {
-			e.printStackTrace();
-		    } 
-            }
-           
-            if (d.returnValue() > 21) {
-		display("", "You Win");
-            } else if (d.returnValue() > p.returnValue()) {
-		display("", "You Lose");
-            } else if  (d.returnValue() < p.returnValue()) {
-		display("", "You Win");
-            } else {
-		display("", "Draw");
-            }
-            
+        twoD.show();
+        label1.setText("Dealer's Hand: " + d.returnValue());
+        Runnable task = () -> {   
+              while (d.returnValue() < 17) {
+		            Card c = d.deal();
+		            d.addHand(c);
+                  Platform.runLater(() -> {
+                    label1.setText("Dealer's Hand: " + d.returnValue());        
+		               dealer.getChildren().addAll(c);
+            });
+                   try
+         		    {
+         			Thread.sleep(800);   
+         		    }
+         		catch(InterruptedException e)
+         		    {
+         			e.printStackTrace();
+         		    } 
+                  }
+               Platform.runLater(() -> {            
+                if (d.returnValue() > 21) {
+      		display("", "You Win");
+            wins++;
+             label.setText("Win Counter: " + wins);
+                  } else if (d.returnValue() > p.returnValue()) {
+      		display("", "You Lose");
+                  } else if  (d.returnValue() < p.returnValue()) {
+      		display("", "You Win");
+               wins++;
+             label.setText("Win Counter: " + wins);
+                  } else {
+      		display("", "Draw");
+                  }
+                  restart();
+                           
+        });
+        };
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
+                    
 	};
         stand.setOnAction(standHandler);
         hit.setText("Hit");

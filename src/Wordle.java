@@ -63,7 +63,27 @@ public class Wordle implements Game {
      *         containing buttons and title
      */
     BorderPane getButtonMenu() {
-        //Button input = new Button("Enter");
+        Button input = new Button("Enter");
+        input.setOnAction((ActionEvent e) -> {
+            if (userGuess.length() < 5) {
+                     display("", "Words must be 5 characters or longer");
+                  } else {
+                        checkAnswer();
+                        if (userGuess.equalsIgnoreCase(word)) {
+                            display("Win", "You got the word in " + count + " tries");
+                            wins++;
+                            labelWins.setText("Win Counter: " + wins);
+                            restart();
+                        }
+                        userGuess = "";
+                        if (count >= 6) {
+                            display("Fail", "The word was " + word);
+                            restart();
+                        }
+                 }
+
+        });
+
         
         Label name = new Label("WORDLE");
         name.setFont(Font.font("Comic Sans MS", 30));
@@ -90,8 +110,6 @@ public class Wordle implements Game {
         });
         
         labelWins = new Text("Win Counter: " + wins);
-        labelWins.setFont(Font.font("Comic Sans MS", 20));
-        labelWins.setFill(Color.BLACK);
         labelWins.setTextAlignment(TextAlignment.CENTER);
 
         
@@ -109,6 +127,9 @@ public class Wordle implements Game {
        
         BorderPane root = new BorderPane();
         root.setTop(title);
+        HBox inputH = new HBox(input);
+        inputH.setAlignment(Pos.TOP_CENTER);
+        root.setBottom(inputH);
         return root;
     }
 
@@ -164,7 +185,7 @@ public class Wordle implements Game {
         word = new Word().word;
         word = word.toUpperCase();
         System.out.println(word);
-        Image img = new Image("https://img.freepik.com/premium-photo/pink-purple-blue-pastel-ombre-digital-paper-watercolor-gradient-watercolour-background-texture_199112-214.jpg?w=360");
+        Image img = new Image("background.jpeg");
         ImageView bg = new ImageView(img);
         bg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
         bg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
@@ -179,6 +200,9 @@ public class Wordle implements Game {
         EventHandler<KeyEvent> userinput = (KeyEvent e) -> {
              String input = e.getCode().toString();
                 if (e.getCode() == KeyCode.ENTER) {
+                  if (userGuess.length() < 5) {
+                     display("Error", "Words must be 5 characters or longer");
+                  } else {
                         checkAnswer();
                         if (userGuess.equalsIgnoreCase(word)) {
                             display("Win", "You got the word in " + count + " tries");
@@ -191,6 +215,7 @@ public class Wordle implements Game {
                             display("Fail", "The word was " + word);
                             restart();
                         }
+                 }
                 } else if (e.getCode() == KeyCode.BACK_SPACE) {
                     if (userGuess.length() > 0) {
                         gameBoard.getArray()[userGuess.length() - 1][count].setText("");

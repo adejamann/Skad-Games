@@ -1,6 +1,7 @@
+
 //Class for the card Deck
 public class cardDeck {
-   private Card[] cards = new Card[52];
+   private Card[] card = new Card[52];
    
    //Assigns the card to its suit and rank
    public final void cardInfo() {
