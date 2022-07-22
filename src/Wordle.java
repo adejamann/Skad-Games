@@ -63,7 +63,23 @@ public class Wordle implements Game {
      *         containing buttons and title
      */
     BorderPane getButtonMenu() {
-        //Button input = new Button("Enter");
+        Button input = new Button("Enter");
+        input.setOnAction((ActionEvent e) -> {
+            checkAnswer();
+                        if (userGuess.equalsIgnoreCase(word)) {
+                            display("Win", "You got the word in " + count + " tries");
+                            wins++;
+                            labelWins.setText("Win Counter: " + wins);
+                            restart();
+                        }
+                        userGuess = "";
+                        if (count >= 6) {
+                            display("Fail", "The word was " + word);
+                            restart();
+                        }
+
+        });
+
         
         Label name = new Label("WORDLE");
         name.setFont(Font.font("Comic Sans MS", 30));
@@ -107,6 +123,7 @@ public class Wordle implements Game {
        
         BorderPane root = new BorderPane();
         root.setTop(title);
+        root.setBottom(input);
         return root;
     }
 

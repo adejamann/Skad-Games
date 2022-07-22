@@ -182,6 +182,7 @@ public class BlackJack implements Game {
         Button stand = new Button();
         EventHandler<ActionEvent> standHandler = (ActionEvent ae) -> {
         twoD.show();
+        label1.setText("Dealer's Hand: " + d.returnValue());
         Runnable task = () -> {
             
               while (d.returnValue() < 17) {
@@ -193,7 +194,7 @@ public class BlackJack implements Game {
             });
           try
 		    {
-			Thread.sleep(750);   
+			Thread.sleep(1000);   
 		    }
 		catch(InterruptedException e)
 		    {
