@@ -47,6 +47,8 @@ public class BlackJack implements Game {
     private Player p;
     private HBox dealer;
     private HBox player;
+    Text label1;
+    Text label2;
 
 
     public BlackJack() {
@@ -77,9 +79,9 @@ public class BlackJack implements Game {
     public void play() {
 	Card oneD = d.deal();
 	d.addHand(oneD);
+   label = new Text("Dealer's Hand: " + d.returnValue()); 
 	Card twoD = d.deal();   
 	d.addHand(twoD);
-   Text label = new Text("Dealer's Hand:"); 
    label.setFont(Font.font("Comic Sans MS", 35));
    label.setFill(Color.WHITE);  
 	dealer = new HBox(oneD, twoD);       
@@ -89,11 +91,17 @@ public class BlackJack implements Game {
 	p.addHand(oneP);
 	Card twoP = d.deal();   
 	p.addHand(twoP); 
-   Text label1 = new Text("Player's Hand:");
+   label1 = new Text("Player's Hand: " + p.returnValue());
    label1.setFont(Font.font("Comic Sans MS", 35));
    label1.setFill(Color.WHITE);       
 	player = new HBox(oneP, twoP);
 	player.setAlignment(Pos.CENTER);
+   System.out.println("suit: " + oneD.suit + " rank: " + oneD.rank);
+   System.out.println("suit: " + twoD.suit + " rank: " + twoD.rank);
+   System.out.println("suit: " + oneP.suit + " rank: " + oneP.rank);
+   System.out.println("suit: " + twoP.suit + " rank: " + twoP.rank);
+
+
 	VBox box = new VBox(label, dealer, label1, player);
 	box.setAlignment(Pos.CENTER);
 	bp = initialize();
@@ -162,6 +170,7 @@ public class BlackJack implements Game {
             Card c = d.deal();
             p.addHand(c);
             player.getChildren().addAll(c);
+            label1.setText("Players's Hand: " + p.returnValue()); 
             if (p.returnValue() > 21) {
 		display("", "You lose");
             }
@@ -171,9 +180,9 @@ public class BlackJack implements Game {
         EventHandler<ActionEvent> standHandler = (ActionEvent ae) -> {
             while (d.returnValue() < 17) {
 		Card c = d.deal();
-		d.addHand(c);
-             
+		d.addHand(c);       
 		dealer.getChildren().addAll(c);
+      label.setText("Dealer's Hand: " + d.returnValue()); 
 		try
 		    {
          
