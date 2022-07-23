@@ -70,8 +70,12 @@ public class BlackJack implements Game {
     }
     
     public void restart() {
-         d.reset();
+         d.addDeck(d.getHand());
+         d.addDeck(p.returnHand());
+         twoD.show();
+         d.resetHand();
          p.reset();
+         System.out.println(d.getDeck().size()); 
          play();
          //player.getChildren().clear();
          //dealer.getChildren().clear();
@@ -94,9 +98,12 @@ public class BlackJack implements Game {
     }
     
     public int quit() {
-    d.reset();
+    d.addDeck(d.getHand());
+         d.addDeck(p.returnHand());
+         twoD.show();
+         d.resetHand();
          p.reset();
-	gameStage.close();
+   gameStage.close();
 	return wins;
 
     }

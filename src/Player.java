@@ -28,4 +28,8 @@ public int returnValue() {
 public void reset() {
    hand.clear();
 }
+
+public ArrayList<Card> returnHand() {
+   return hand;
+}
 }

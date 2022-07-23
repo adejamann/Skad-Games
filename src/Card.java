@@ -35,6 +35,7 @@ import javafx.scene.layout.VBox;
 //Creates a card class that will display the rank and suit of the card
 public class Card extends StackPane {
 
+/**
    //Enum for the card Rank
    public final cardRank rank;
    public final cardSuit suit;
@@ -77,6 +78,7 @@ public class Card extends StackPane {
       return rank.toString() + suit.toString();
    }
 }
+*/
 
 //Enum for the card Rank
 
