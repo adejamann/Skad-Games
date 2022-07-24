@@ -43,6 +43,8 @@ public class Wordle implements Game {
     public String word = "";
     public String attempt;
     private int count = 0;
+    // private Image pic;
+//     private ImageView view = new ImageView(pic);
  
     
     public Wordle() {
@@ -109,6 +111,11 @@ public class Wordle implements Game {
             
         });
         
+        //hint button
+        Button hint = new Button("Hint");
+        hint.setOnAction(e -> display("Hint", "This word begins with: " + word.charAt(0) + " and ends with: " + word.charAt(4)));
+
+        
         labelWins = new Text("Win Counter: " + wins);
         labelWins.setFont(Font.font("Comic Sans MS", 20));
         labelWins.setFill(Color.BLACK);
@@ -117,13 +124,13 @@ public class Wordle implements Game {
         
         HBox options = new HBox(10);
         options.setSpacing(5);
-        options.getChildren().addAll(rules, reset, exit, labelWins);
+        options.getChildren().addAll(rules, reset, exit, hint);
         options.setPadding(new Insets(0, 10, 0, 10));
         options.setAlignment(Pos.TOP_CENTER);
         
         
         VBox title = new VBox();
-        title.getChildren().addAll(options, name);
+        title.getChildren().addAll(labelWins, options, name);
         title.setAlignment(Pos.TOP_CENTER);
         title.setPadding(new Insets(50, 50, 50, 50));
        
@@ -251,6 +258,10 @@ public class Wordle implements Game {
         userGuess = "";
         
     }
+    
+    // public void setPic(Image p) {
+//       pic = p;
+//     }
     
     
 }

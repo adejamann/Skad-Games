@@ -8,6 +8,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.image.ImageView;
@@ -26,6 +27,7 @@ import javafx.event.EventHandler;
 import javafx.scene.paint.ImagePattern;
 import javafx.application.Platform;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.TextField;
 
 
 /**
@@ -35,7 +37,8 @@ import javafx.scene.layout.VBox;
 public class GameSuite extends Application {
 
 int totalWins = 0;
-String userName = "Player";
+String userName = "";
+Image avatar; 
 String content = "";
 Text leaderContent;
 LeaderBoard lb = new LeaderBoard();
@@ -201,7 +204,115 @@ BlackJack three = new BlackJack();
         //tab with User profile
         Tab profile = new Tab("Profile");
         profile.setClosable(false);
+            // avator choices
+        Label pic = new Label("Choose your gamer avatar"); 
+        pic.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
+        Image img2;
+        ImageView view2;
         
+        // different avatars
+        Button av1 = new Button(); 
+        img2 = new Image("av1.jpg");
+        view2 = new ImageView(img2);
+        view2.setFitHeight(80);
+        view2.setPreserveRatio(true);
+        av1.setGraphic(view2); 
+        
+        Button av2 = new Button(); 
+        img2 = new Image("av2.png");
+        view2 = new ImageView(img2);
+        view2.setFitHeight(80);
+        view2.setPreserveRatio(true);
+        av2.setGraphic(view2);
+        
+        Button av3 = new Button();
+        img2 = new Image("av3.jpg");
+        view2 = new ImageView(img2);
+        view2.setFitHeight(80);
+        view2.setPreserveRatio(true);
+        av3.setGraphic(view2);
+        
+        Button av4 = new Button();
+        img2 = new Image("av4.jpg");
+        view2 = new ImageView(img2);
+        view2.setFitHeight(80);
+        view2.setPreserveRatio(true);
+        av4.setGraphic(view2);
+        
+        // what happens when each button is clicked? 
+        EventHandler<ActionEvent> setAv1 = (ActionEvent ae) -> {
+         avatar = new Image("av1.jpg");
+         av2.setDisable(true);
+         av3.setDisable(true);
+         av4.setDisable(true);
+         // one.setPic(avatar);
+//          two.setPic(avatar);
+//          three.setPic(avatar);
+        };
+        av1.setOnAction(setAv1);
+        
+        EventHandler<ActionEvent> setAv2 = (ActionEvent ae) -> {
+         avatar = new Image("av2.png");
+         av1.setDisable(true);
+         av3.setDisable(true);
+         av4.setDisable(true);
+         // one.setPic(avatar);
+//          two.setPic(avatar);
+//          three.setPic(avatar);
+        };
+        av2.setOnAction(setAv2);
+        
+        EventHandler<ActionEvent> setAv3 = (ActionEvent ae) -> {
+         avatar = new Image("av3.jpg");
+         av1.setDisable(true);
+         av2.setDisable(true);
+         av4.setDisable(true);
+         // one.setPic(avatar);
+//          two.setPic(avatar);
+//          three.setPic(avatar);
+        };
+        av3.setOnAction(setAv3);
+        
+        EventHandler<ActionEvent> setAv4 = (ActionEvent ae) -> {
+         avatar = new Image("av4.jpg");
+         av1.setDisable(true);
+         av2.setDisable(true);
+         av3.setDisable(true);
+         // one.setPic(avatar);
+//          two.setPic(avatar);
+//          three.setPic(avatar);
+        };
+        av4.setOnAction(setAv4);
+        
+        HBox avaPics = new HBox(av1, av2, av3, av4); // all the avatar options
+        avaPics.setSpacing(10.0);
+        avaPics.setAlignment(Pos.CENTER);
+        
+        VBox picAva = new VBox(pic, avaPics); 
+        picAva.setSpacing(5.0);
+        picAva.setAlignment(Pos.CENTER);
+        
+        Label gamerName1 = new Label("What's your gamer name: ");
+        gamerName1.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
+        TextField gamerName2 = new TextField();
+        Button enterButton = new Button("Enter");
+        EventHandler<ActionEvent> getName = (ActionEvent ae) -> {
+         userName = gamerName2.getText();
+         System.out.println("Name changed");
+        };
+        enterButton.setOnAction(getName);
+        HBox gamerNameE = new HBox(gamerName1, gamerName2, enterButton);
+        gamerNameE.setAlignment(Pos.CENTER);
+        
+        VBox everything = new VBox(picAva, gamerNameE);
+        everything.setSpacing(15.0);
+        everything.setAlignment(Pos.CENTER);
+
+        profile.setContent(everything); 
+        
+        
+        
+        // getting all tabs 
         tabs.getTabs().add(information);
         tabs.getTabs().add(games);
         tabs.getTabs().add(leader);

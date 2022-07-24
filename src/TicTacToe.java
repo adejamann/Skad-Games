@@ -41,6 +41,7 @@ public class TicTacToe implements Game{
     private Text label;
     private Board gameBoard;
     private BorderPane center;
+    //private Image pic; 
    
     public TicTacToe() {
         initialize();
@@ -170,6 +171,10 @@ public class TicTacToe implements Game{
     public Stage getStage() {
         return gameStage;
     }
+    
+    // public void setPic(Image p) {
+//       pic = p;
+//     }
 
     
     private void update() {

@@ -6,5 +6,7 @@ Adeja
 Player
 Player
 Dumebi
+hello
+Dumebi
 Adeja
 Kome

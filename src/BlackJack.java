@@ -51,6 +51,7 @@ public class BlackJack implements Game {
     Text label1;
     Text label2;
     Card twoD;
+    //private Image pic; 
 
 
     public BlackJack() {
@@ -294,6 +295,10 @@ public class BlackJack implements Game {
         insWindow.setScene(s);
         insWindow.showAndWait();
     }
+    
+    // public void setPic(Image p) {
+//      pic = p;
+//     }
 
 
 
