@@ -24,6 +24,7 @@ public class Word {
     
     public Word () {
        word = words.get((int)(Math.random() * words.size())); 
+       
     /**
     try {
             String sUrl = "https://random-word-api.herokuapp.com/word?length=5";
@@ -42,6 +43,29 @@ public class Word {
         }
         */
       }
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+      
       
 
 }
