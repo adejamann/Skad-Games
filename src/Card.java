@@ -80,6 +80,10 @@ public class Card extends StackPane {
 }
 */
 
+public final cardRank rank;
+public final cardSuit suit;
+public final int cardValue;
+private Rectangle playingcard;
 //Enum for the card Rank
 
 public enum cardRank {
@@ -103,10 +107,7 @@ public enum cardRank {
    }
 };
 
-public final cardRank rank;
-public final cardSuit suit;
-public final int cardValue;
-private Rectangle playingcard;
+
 
 //Enum for the card Suit
 public enum cardSuit {
@@ -129,43 +130,43 @@ public Card(cardSuit suit, cardRank rank) {
    }
    if (suit == cardSuit.DIAMONDS) {
       if (rank == cardRank.ACE) {
-         Image d1 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Playing_card_diamond_A.svg/200px-Playing_card_diamond_A.svg.png?20070326033900");
+         Image d1 = new Image("D-Ace.png");
          playingcard.setFill(new ImagePattern(d1));
        } else if (rank == cardRank.TWO) {
-            Image d2 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Playing_card_diamond_2.svg/200px-Playing_card_diamond_2.svg.png?20070326033915");
+            Image d2 = new Image("D-2.png");
             playingcard.setFill(new ImagePattern(d2));
        } else if (rank == cardRank.THREE) {
-            Image d3 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Playing_card_diamond_3.svg/200px-Playing_card_diamond_3.svg.png?20070326033933");
+            Image d3 = new Image("D-3.png");
             playingcard.setFill(new ImagePattern(d3));
        } else if (rank == cardRank.FOUR) {
-            Image d4 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Playing_card_diamond_4.svg/300px-Playing_card_diamond_4.svg.png?20070326033947");
+            Image d4 = new Image("D-4.png");
             playingcard.setFill(new ImagePattern(d4));
        } else if (rank == cardRank.FIVE) {
-            Image d5 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Playing_card_diamond_5.svg/300px-Playing_card_diamond_5.svg.png?20070326034008");
+            Image d5 = new Image("D-5.png");
             playingcard.setFill(new ImagePattern(d5));
        } else if (rank == cardRank.SIX) {
-            Image d6 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Playing_card_diamond_6.svg/300px-Playing_card_diamond_6.svg.png?20070326034029");
+            Image d6 = new Image("D-6.png");
             playingcard.setFill(new ImagePattern(d6));
        } else if (rank == cardRank.SEVEN) {
-            Image d7 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Playing_card_diamond_7.svg/300px-Playing_card_diamond_7.svg.png?20070326034044");
+            Image d7 = new Image("D-7.png");
             playingcard.setFill(new ImagePattern(d7));
        } else if (rank == cardRank.EIGHT) {
-            Image d8 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Playing_card_diamond_8.svg/300px-Playing_card_diamond_8.svg.png");
+            Image d8 = new Image("D-8.png");
             playingcard.setFill(new ImagePattern(d8));
        } else if (rank == cardRank.NINE) {
-            Image d9 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Playing_card_diamond_9.svg/300px-Playing_card_diamond_9.svg.png?20070326034140");
+            Image d9 = new Image("D-9.png");
             playingcard.setFill(new ImagePattern(d9));
        } else if (rank == cardRank.TEN) {
-            Image d10 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Playing_card_diamond_10.svg/300px-Playing_card_diamond_10.svg.png");
+            Image d10 = new Image("D-10.png");
             playingcard.setFill(new ImagePattern(d10));
        } else if (rank == cardRank.JACK) {
-            Image dj = new Image("https://media.istockphoto.com/photos/playing-card-jack-of-diamonds-picture-id163052036?s=612x612");
+            Image dj = new Image("D-J.jpeg");
             playingcard.setFill(new ImagePattern(dj));
        } else if (rank == cardRank.QUEEN) {
-            Image dq = new Image("https://media.istockphoto.com/vectors/queen-of-diamonds-playing-card-vector-id499378190?s=612x612");
+            Image dq = new Image("D-Q.jpeg");
             playingcard.setFill(new ImagePattern(dq));
        } else {
-            Image dk = new Image("https://media.istockphoto.com/vectors/king-of-diamonds-two-playing-card-vector-id165558074?k=20&m=165558074&s=612x612&w=0&h=xTrhPT9rbgdjN8M3Hmd-DgLU_JiItrBb8dSFyPTvx-4=");
+            Image dk = new Image("D-K.jpeg");
             playingcard.setFill(new ImagePattern(dk));
        } 
      } else if (suit == cardSuit.SPADES){
