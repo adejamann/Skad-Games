@@ -211,84 +211,84 @@ public Card(cardSuit suit, cardRank rank) {
        } 
     } else if (suit == cardSuit.HEARTS) {
       if (rank == cardRank.ACE) {
-         Image h1 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Playing_card_heart_A.svg/195px-Playing_card_heart_A.svg.png");
+         Image h1 = new Image("H-Ace.png");
          playingcard.setFill(new ImagePattern(h1));
        } else if (rank == cardRank.TWO) {
-            Image h2 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Playing_card_heart_2.svg/300px-Playing_card_heart_2.svg.png?20070326034413");
+            Image h2 = new Image("H-2.png");
             playingcard.setFill(new ImagePattern(h2));
        } else if (rank == cardRank.THREE) {
-            Image h3 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Playing_card_heart_3.svg/300px-Playing_card_heart_3.svg.png?20070326034439");
+            Image h3 = new Image("H-3.png");
             playingcard.setFill(new ImagePattern(h3));
        } else if (rank == cardRank.FOUR) {
-            Image h4 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Playing_card_heart_4.svg/300px-Playing_card_heart_4.svg.png?20070326034453");
+            Image h4 = new Image("H-4.png");
             playingcard.setFill(new ImagePattern(h4));
        } else if (rank == cardRank.FIVE) {
-            Image h5 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Playing_card_heart_5.svg/300px-Playing_card_heart_5.svg.png?20070326034508");
+            Image h5 = new Image("H-5.png");
             playingcard.setFill(new ImagePattern(h5));
        } else if (rank == cardRank.SIX){
-            Image h6 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Playing_card_heart_6.svg/300px-Playing_card_heart_6.svg.png?20070326034522");
+            Image h6 = new Image("H-6.png");
             playingcard.setFill(new ImagePattern(h6));
        } else if (rank == cardRank.SEVEN) {
-            Image h7 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Playing_card_heart_7.svg/300px-Playing_card_heart_7.svg.png?20070326034536");
+            Image h7 = new Image("H-7.png");
             playingcard.setFill(new ImagePattern(h7));
        } else if (rank == cardRank.EIGHT) {
-            Image h8 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Playing_card_heart_8.svg/300px-Playing_card_heart_8.svg.png?20070326034552");
+            Image h8 = new Image("H-8.png");
             playingcard.setFill(new ImagePattern(h8));
        } else if (rank == cardRank.NINE) {
-            Image h9 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Playing_card_heart_9.svg/300px-Playing_card_heart_9.svg.png?20070326034611");
+            Image h9 = new Image("H-9.png");
             playingcard.setFill(new ImagePattern(h9));
        } else if (rank == cardRank.TEN) {
-            Image h10 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Playing_card_heart_10.svg/300px-Playing_card_heart_10.svg.png?20070326034633");
+            Image h10 = new Image("H-10.png");
             playingcard.setFill(new ImagePattern(h10));
        } else if (rank == cardRank.JACK) {
-            Image hj = new Image("https://media.istockphoto.com/vectors/jack-of-hearts-vector-id165501014?k=20&m=165501014&s=612x612&w=0&h=H6p1VkfA4kMZK6kQAUnBkde9e8SkieF-zsnyCw9rO_w=");
+            Image hj = new Image("H-J.jpg");
             playingcard.setFill(new ImagePattern(hj));
        } else if (rank == cardRank.QUEEN) {
-            Image hq = new Image("https://media.istockphoto.com/vectors/queen-of-hearts-two-playing-card-vector-id165528945?s=612x612");
+            Image hq = new Image("H-Q.jpg");
             playingcard.setFill(new ImagePattern(hq));
        } else {
-            Image hk = new Image("https://media.istockphoto.com/photos/playing-card-king-of-hearts-picture-id166089307?s=612x612");
+            Image hk = new Image("H-K.jpg");
             playingcard.setFill(new ImagePattern(hk));
        }
    } else {
       if (rank == cardRank.ACE) {
-         Image c1 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Playing_card_club_A.svg/300px-Playing_card_club_A.svg.png?20071013033815");
+         Image c1 = new Image("C-Ace.png");
          playingcard.setFill(new ImagePattern(c1));
        } else if (rank == cardRank.TWO) {
-            Image c2 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Playing_card_club_2.svg/300px-Playing_card_club_2.svg.png?20071013033848");
+            Image c2 = new Image("C-2.png");
             playingcard.setFill(new ImagePattern(c2));
        } else if (rank == cardRank.THREE) {
-            Image c3 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Playing_card_club_3.svg/300px-Playing_card_club_3.svg.png?20071013033857");
+            Image c3 = new Image("C-3.png");
             playingcard.setFill(new ImagePattern(c3));
        } else if (rank == cardRank.FOUR) {
-            Image c4 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Playing_card_club_4.svg/300px-Playing_card_club_4.svg.png?20071013033908");
+            Image c4 = new Image("C-4.png");
             playingcard.setFill(new ImagePattern(c4));
        } else if (rank == cardRank.FIVE) {
-            Image c5 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Playing_card_club_5.svg/300px-Playing_card_club_5.svg.png?20071013033920");
+            Image c5 = new Image("C-5.png");
             playingcard.setFill(new ImagePattern(c5));
        } else if (rank == cardRank.SIX) {
-            Image c6 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Playing_card_club_6.svg/300px-Playing_card_club_6.svg.png?20071013033931");
+            Image c6 = new Image("C-6.png");
             playingcard.setFill(new ImagePattern(c6));
        } else if (rank == cardRank.SEVEN) {
-            Image c7 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Playing_card_club_7.svg/300px-Playing_card_club_7.svg.png?20071013033942");
+            Image c7 = new Image("C-7.png");
             playingcard.setFill(new ImagePattern(c7));
        } else if (rank == cardRank.EIGHT) {
-            Image c8 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Playing_card_club_8.svg/300px-Playing_card_club_8.svg.png");
+            Image c8 = new Image("C-8.png");
             playingcard.setFill(new ImagePattern(c8));
        } else if (rank == cardRank.NINE) {
-            Image c9 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Playing_card_club_9.svg/300px-Playing_card_club_9.svg.png?20090429053054");
+            Image c9 = new Image("C-9.png");
             playingcard.setFill(new ImagePattern(c9));
        } else if (rank == cardRank.TEN) {
-            Image c10 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Playing_card_club_10.svg/300px-Playing_card_club_10.svg.png?20071013034017");
+            Image c10 = new Image("C-10.png");
             playingcard.setFill(new ImagePattern(c10));
        } else if (rank == cardRank.JACK) {
-            Image cj = new Image("https://media.istockphoto.com/photos/jack-of-clubs-picture-id466256313?k=20&m=466256313&s=612x612&w=0&h=azzML34wDzqyqbN8b0ME3mfk4Wu3ZjPxE17YS0KNaLw=");
+            Image cj = new Image("C-J.jpg");
             playingcard.setFill(new ImagePattern(cj));
        } else if (rank == cardRank.QUEEN) {
-            Image cq = new Image("https://media.istockphoto.com/photos/playing-card-queen-of-clubs-picture-id155652049?k=20&m=155652049&s=612x612&w=0&h=eo4HLhhpMFlVwLIw-iA7gqF2gib83peNLgW7hvqCDnE=");
+            Image cq = new Image("C-Q.jpg");
             playingcard.setFill(new ImagePattern(cq));
        } else {
-            Image ck = new Image("https://media.istockphoto.com/photos/playing-card-king-of-clubs-picture-id149127808?s=612x612");
+            Image ck = new Image("C-K.jpg");
             playingcard.setFill(new ImagePattern(ck));
        }
    }
