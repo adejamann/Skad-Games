@@ -171,43 +171,43 @@ public Card(cardSuit suit, cardRank rank) {
        } 
      } else if (suit == cardSuit.SPADES){
          if (rank == cardRank.ACE) {
-         Image s1 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/01_of_spades_A.svg/255px-01_of_spades_A.svg.png");
+         Image s1 = new Image("S-Ace.png");
          playingcard.setFill(new ImagePattern(s1));
        } else if (rank == cardRank.TWO) {
-            Image s2 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Playing_card_spade_2.svg/300px-Playing_card_spade_2.svg.png?20070326035258");
+            Image s2 = new Image("S-2.png");
             playingcard.setFill(new ImagePattern(s2));
        } else if (rank == cardRank.THREE) {
-            Image s3 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Playing_card_spade_3.svg/300px-Playing_card_spade_3.svg.png?20070326035314");
+            Image s3 = new Image("S-3.png");
             playingcard.setFill(new ImagePattern(s3));
        } else if (rank == cardRank.FOUR) {
-            Image s4 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Playing_card_spade_4.svg/300px-Playing_card_spade_4.svg.png?20070326035330");
+            Image s4 = new Image("S-4.png");
             playingcard.setFill(new ImagePattern(s4));
        } else if (rank == cardRank.FIVE) {
-            Image s5 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Playing_card_spade_5.svg/300px-Playing_card_spade_5.svg.png?20070326035345");
+            Image s5 = new Image("S-5.png");
             playingcard.setFill(new ImagePattern(s5));
        } else if (rank == cardRank.SIX) {
-            Image s6 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Playing_card_spade_6.svg/300px-Playing_card_spade_6.svg.png?20070326035401");
+            Image s6 = new Image("S-6.png");
             playingcard.setFill(new ImagePattern(s6));
        } else if (rank == cardRank.SEVEN) {
-            Image s7 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Playing_card_spade_7.svg/300px-Playing_card_spade_7.svg.png?20070326035421");
+            Image s7 = new Image("S-7.png");
             playingcard.setFill(new ImagePattern(s7));
        } else if (rank == cardRank.EIGHT) {
-            Image s8 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Playing_card_spade_8.svg/300px-Playing_card_spade_8.svg.png?20070326035436");
+            Image s8 = new Image("S-8.png");
             playingcard.setFill(new ImagePattern(s8));
        } else if (rank == cardRank.NINE) {
-            Image s9 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Playing_card_spade_9.svg/300px-Playing_card_spade_9.svg.png?20090429053434");
+            Image s9 = new Image("S-9.png");
             playingcard.setFill(new ImagePattern(s9));
        } else if (rank == cardRank.TEN) {
-            Image s10 = new Image("https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Playing_card_spade_10.svg/300px-Playing_card_spade_10.svg.png?20070326035506");
+            Image s10 = new Image("S-10.png");
             playingcard.setFill(new ImagePattern(s10));
        } else if (rank == cardRank.JACK) {
-            Image sj = new Image("https://media.istockphoto.com/photos/playing-card-jack-of-spades-picture-id458107633?s=612x612");
+            Image sj = new Image("S-J.jpeg");
             playingcard.setFill(new ImagePattern(sj));
        } else if (rank == cardRank.QUEEN) {
-            Image sq = new Image("https://media.istockphoto.com/photos/large-index-playing-card-queen-of-spades-picture-id657378020?s=612x612");
+            Image sq = new Image("S-Q.jpeg");
             playingcard.setFill(new ImagePattern(sq));
        } else {
-            Image sk = new Image("https://media.istockphoto.com/illustrations/king-of-spades-two-playing-card-illustration-id165587843?s=612x612");
+            Image sk = new Image("S-K.jpeg");
             playingcard.setFill(new ImagePattern(sk));
        } 
     } else if (suit == cardSuit.HEARTS) {
