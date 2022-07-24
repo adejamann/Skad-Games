@@ -1,0 +1,4 @@
+ //hint button
+        Button hint = new Button("Hint");
+        hint.setOnAction(e -> display("Hint", "This word begins with: " + word.charAt(0) + " and ends with: " + word.charAt(4)));
+
