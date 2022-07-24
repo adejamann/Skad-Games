@@ -1,0 +1,5 @@
+Image tttimg = new Image("https://i.pinimg.com/564x/03/0b/b8/030bb86f8dd672d39b693cd94bfd1f4a.jpg");
+        ImageView tttbg = new ImageView(tttimg);
+        tttbg.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
+        tttbg.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
+        StackPane temp = new StackPane(tttbg, center);
