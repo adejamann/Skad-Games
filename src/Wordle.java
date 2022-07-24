@@ -43,6 +43,8 @@ public class Wordle implements Game {
     public String word = "";
     public String attempt;
     private int count = 0;
+    // private Image pic;
+//     private ImageView view = new ImageView(pic);
  
     
     public Wordle() {
@@ -256,6 +258,10 @@ public class Wordle implements Game {
         userGuess = "";
         
     }
+    
+    // public void setPic(Image p) {
+//       pic = p;
+//     }
     
     
 }
