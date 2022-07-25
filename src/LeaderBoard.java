@@ -13,16 +13,21 @@ public class LeaderBoard {
             BufferedReader bufferedReader = new BufferedReader(scoresReader);
 
             FileReader namesReader = new FileReader("Names.txt");
-            BufferedReader bufferedReader2 = new BufferedReader(namesReader);            
+            BufferedReader bufferedReader2 = new BufferedReader(namesReader);      
+            
+            FileReader profileReader = new FileReader("pfp.txt");
+            BufferedReader bufferedReader3 = new BufferedReader(profileReader);      
 
             String name;
             int score;
+            String profile;
 
 
             for (int i = 0; i < 10; i++) {
                 score = Integer.parseInt(bufferedReader.readLine());
                 name = bufferedReader2.readLine();
-                leaderboard.add(new Player(name, score));
+                profile = bufferedReader3.readLine();
+                leaderboard.add(new Player(name, score, profile));
             }
             scoresReader.close();
             namesReader.close();
@@ -42,6 +47,14 @@ public class LeaderBoard {
         System.out.println(leaderboard);
         //leaderboard.sort(Player::compareTo);
     }
+    
+    public void insert(String name, int score, String pfp) {
+        leaderboard.add(new Player(name, score, pfp));
+        Collections.sort(leaderboard, Collections.reverseOrder());
+        System.out.println(leaderboard);
+        //leaderboard.sort(Player::compareTo);
+    }
+
 
     public void update () {
         try {
@@ -49,16 +62,20 @@ public class LeaderBoard {
             // attach a file to FileWriter
             FileWriter fw1 = new FileWriter("Scores.txt", false);
             FileWriter fw2 = new FileWriter("Names.txt", false);
+            FileWriter fw3 = new FileWriter("pfp.txt", false);
+
 
             for (int i = 0; i < 10; i++) {
                 Player temp = leaderboard.get(i);
                 fw1.write(temp.score + "\n");
                 fw2.write(temp.name + "\n");
+                fw3.write(temp.profile + "\n");
             }
             // read each character from string and write
             // into FileWriter
             fw1.close();
             fw2.close();
+            fw3.close();
         }
         catch (Exception e) {
             e.getStackTrace();
@@ -67,10 +84,17 @@ public class LeaderBoard {
         class Player implements Comparable<Player> {
             String name;
             int score;
+            String profile;
 
             public Player(String n, int s) {
                 name = n;
                 score = s;
+            }
+            
+            public Player(String n, int s, String pfp) {
+                name = n;
+                score = s;
+                profile = pfp;
             }
 
             @Override
@@ -84,6 +108,10 @@ public class LeaderBoard {
             
             public String getName() {
                return name;
+            }
+            
+            public String getProfile() {
+               return profile;
             }
             
             public String toString() {

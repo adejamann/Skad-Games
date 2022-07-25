@@ -42,6 +42,8 @@ Image avatar;
 String content = "";
 Text leaderContent;
 LeaderBoard lb = new LeaderBoard();
+String pfp = "av1.jpg";
+VBox pictures = new VBox();
 
 TicTacToe one = new TicTacToe();
 Wordle two = new Wordle();
@@ -176,11 +178,12 @@ BlackJack three = new BlackJack();
         for (LeaderBoard.Player p: lb.leaderboard) {
          content = content + p.getName() + ": " + p.getScore() + "\n";
         }
+        
         leaderContent = new Text(content);
         leaderContent.setFont(Font.font("Comic Sans MS", 20));
         Button update = new Button ("Update LeaderBoard");
          EventHandler<ActionEvent> leaderUpdate = (ActionEvent ae) -> {
-            lb.insert(userName, totalWins);
+            lb.insert(userName, totalWins, pfp);
             lb.update();
             lb.clear();
             lb.read();
@@ -190,12 +193,28 @@ BlackJack three = new BlackJack();
           content = content + p.getName() + ": " + p.getScore() + "\n";
          }
          leaderContent.setText(content);
+         pictures.getChildren().clear();
+         for (int i = 0; i < 10; i++) {
+          LeaderBoard.Player p = lb.leaderboard.get(i);
+           Image img = new Image(p.getProfile());
+          Rectangle s1 = new Rectangle(50, 50, 50, 50);
+           s1.setFill(new ImagePattern(img));
+           pictures.getChildren().addAll(s1);
+        }
          System.out.println("Done");
         };         
        update.setOnAction(leaderUpdate);
 
+        for (int i = 0; i < 10; i++) {
+          LeaderBoard.Player p = lb.leaderboard.get(i);
+           Image img = new Image(p.getProfile());
+          Rectangle s1 = new Rectangle(50, 50, 50, 50);
+           s1.setFill(new ImagePattern(img));
+           pictures.getChildren().addAll(s1);
+        }
         update.setAlignment(Pos.CENTER);
         leaderRoot.setTop(update);
+        leaderRoot.setRight(pictures);
         leaderRoot.setCenter(leaderContent);
         //leaderRoot.getChildren().addAll(update, leaderContent);
         leader.setContent(leaderRoot);
@@ -242,6 +261,7 @@ BlackJack three = new BlackJack();
         // what happens when each button is clicked? 
         EventHandler<ActionEvent> setAv1 = (ActionEvent ae) -> {
          avatar = new Image("av1.jpg");
+         pfp = "av1.jpg";
          av2.setDisable(true);
          av3.setDisable(true);
          av4.setDisable(true);
@@ -253,6 +273,7 @@ BlackJack three = new BlackJack();
         
         EventHandler<ActionEvent> setAv2 = (ActionEvent ae) -> {
          avatar = new Image("av2.png");
+         pfp = "av2.png";
          av1.setDisable(true);
          av3.setDisable(true);
          av4.setDisable(true);
@@ -264,6 +285,7 @@ BlackJack three = new BlackJack();
         
         EventHandler<ActionEvent> setAv3 = (ActionEvent ae) -> {
          avatar = new Image("av3.jpg");
+         pfp = "av3.jpg";
          av1.setDisable(true);
          av2.setDisable(true);
          av4.setDisable(true);
@@ -275,6 +297,7 @@ BlackJack three = new BlackJack();
         
         EventHandler<ActionEvent> setAv4 = (ActionEvent ae) -> {
          avatar = new Image("av4.jpg");
+         pfp = "av4.jpg";
          av1.setDisable(true);
          av2.setDisable(true);
          av3.setDisable(true);
