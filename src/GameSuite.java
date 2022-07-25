@@ -37,7 +37,7 @@ import javafx.scene.control.TextField;
 public class GameSuite extends Application {
 
 int totalWins = 0;
-String userName = "";
+String userName = "Player";
 Image avatar; 
 String content = "";
 Text leaderContent;

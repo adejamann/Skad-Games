@@ -13,7 +13,7 @@ public class LeaderBoard {
             BufferedReader bufferedReader = new BufferedReader(scoresReader);
 
             FileReader namesReader = new FileReader("Names.txt");
-            BufferedReader bufferedReader2 = new BufferedReader(namesReader);
+            BufferedReader bufferedReader2 = new BufferedReader(namesReader);            
 
             String name;
             int score;
