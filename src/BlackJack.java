@@ -156,11 +156,11 @@ public class BlackJack implements Game {
 	// creating the button for the instructions  
 	Button rules = new Button("Instructions"); 
 	rules.setOnAction(e -> display("Instructions",
-				       "1. The game is played between 2 to 7 players and uses a 52-card deck. All the number cards score the value indicated on them. The face cards(Jack, Queen, and King) score 10 points and the Ace can either be 11 points or 1.\n"
+				       "1. The game is played between 2 to 7 players and uses a 52-card deck. All the number cards score the value indicated on them.\n The face cards(Jack, Queen, and King) score 10 points and the Ace can either be 11 points or 1.\n"
 				       + "2. All players place their bets and deal two cards face-up. "
 				       + "The dealer receives two cards, one face-up and the other face-down.\n"
 				       + "3. Each player is given a chance to draw more cards. The players can either call 'hit' or 'stand'. "
-				       + "If the player calls out 'hit', they are given an extra card. They can call out 'hit' again or 'stand' if they do not want to draw any more cards. "
+				       + "If the player calls out 'hit', they are given an extra card. They can call out 'hit' again or 'stand' if they do not want to draw any more cards\n."
 				       + "The player can call 'hit' as many times as they want, but have to ain not to 'bust' (exceed a total of 21). \n" 
 				       + "4. If the player busts, they immediately lose their bet.\n"
 				       + "5. After each player has played and either stood or busted, the dealer takes their turn. They can either 'hit' or 'stand'.\n"
@@ -176,7 +176,7 @@ public class BlackJack implements Game {
      
 	restart = new Button();
         exit = new Button();
-        Font font = Font.font("Verdana", FontWeight.BOLD, FontPosture.ITALIC, 35);
+        Font font = Font.font("Verdana", FontWeight.BOLD, FontPosture.ITALIC, 20);
         label = new Text("Win Counter: " + wins);
         label.setFont(font);
         
@@ -195,7 +195,7 @@ public class BlackJack implements Game {
         restart.setOnAction(restartHandler);
         exit.setOnAction(exitHandler);
         HBox game = new HBox();
-        game.getChildren().addAll(rules, label, restart, exit);
+        game.getChildren().addAll(label, rules, restart, exit);
         
         HBox gameButtons = new HBox();
         
