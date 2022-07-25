@@ -144,11 +144,11 @@ BlackJack three = new BlackJack();
         grid.setVgap(15);
         
         Text winCount = new Text("Wins: " + 0);
-        winCount.setFont(Font.font("Comic Sans MS", 20));
-        winCount.setFill(Color.WHITE);
+        winCount.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 30));
+        winCount.setFill(Color.BLACK);
         HBox win = new HBox(winCount);
         win.setAlignment(Pos.CENTER);
-        VBox home = new VBox(title, grid, win, exitbutton);
+        VBox home = new VBox(title, grid, exitbutton);
         home.setSpacing(30);
         
 
@@ -304,7 +304,7 @@ BlackJack three = new BlackJack();
         HBox gamerNameE = new HBox(gamerName1, gamerName2, enterButton);
         gamerNameE.setAlignment(Pos.CENTER);
         
-        VBox everything = new VBox(picAva, gamerNameE);
+        VBox everything = new VBox(picAva, gamerNameE, win);
         everything.setSpacing(15.0);
         everything.setAlignment(Pos.CENTER);
 
