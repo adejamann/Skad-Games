@@ -208,7 +208,7 @@ BlackJack three = new BlackJack();
         for (int i = 0; i < 10; i++) {
           LeaderBoard.Player p = lb.leaderboard.get(i);
            Image img = new Image(p.getProfile());
-          Rectangle s1 = new Rectangle(50, 50, 50, 50);
+          Rectangle s1 = new Rectangle(40, 40, 40, 40);
            s1.setFill(new ImagePattern(img));
            pictures.getChildren().addAll(s1);
         }
